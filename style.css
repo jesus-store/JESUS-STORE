@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap');
 
 * {
@@ -11,91 +12,107 @@ html {
 }
 
 body {
-    background: #08070d;
+    background: #08060d;
     color: #fff;
     font-family: 'Inter', sans-serif;
 }
 
 header {
     padding: 30px 8%;
-    background: #0d0b15;
-    border-bottom: 1px solid #29203d;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #100b18;
+    border-bottom: 1px solid #38204d;
 }
 
 header h1 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 38px;
-    color: #a855f7;
-    text-shadow: 0 0 20px #9333ea;
+    color: #c084fc;
+    letter-spacing: 3px;
 }
 
 header p {
     color: #aaa;
-    letter-spacing: 4px;
-    font-size: 11px;
-    margin-top: 10px;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+main {
+    max-width: 1150px;
+    margin: auto;
+    padding: 35px 22px;
 }
 
 .hero {
+    min-height: 350px;
+    padding: 80px 30px;
     text-align: center;
-    padding: 130px 20px;
-    background: radial-gradient(ellipse at center, #291044 0%, #100b19 45%, #08070d 80%);
+    border: 1px solid #54247a;
+    border-radius: 22px;
+    background: radial-gradient(circle at center, #35134e, #110a1b 65%);
+    box-shadow: 0 0 35px #8b5cf633;
 }
 
 .hero h2 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 42px;
-    margin-bottom: 20px;
+    font-size: clamp(25px, 5vw, 42px);
+    margin-bottom: 18px;
 }
 
 .hero p {
-    color: #aaa;
-    margin-bottom: 35px;
+    color: #c4b5d0;
+    margin-bottom: 30px;
 }
 
-.hero a, button {
+.hero a,
+button {
     display: inline-block;
-    background: linear-gradient(90deg, #7e22ce, #a855f7);
+    padding: 13px 24px;
+    border: 0;
+    border-radius: 9px;
+    background: linear-gradient(100deg, #7e22ce, #c084fc);
     color: white;
-    padding: 14px 28px;
-    border: none;
-    border-radius: 8px;
+    font-weight: 700;
     text-decoration: none;
     cursor: pointer;
-    font-weight: 700;
-    transition: .3s;
+    transition: .2s;
 }
 
-.hero a:hover, button:hover {
-    box-shadow: 0 0 25px #9333ea;
+button:hover,
+.hero a:hover {
     transform: translateY(-3px);
+    box-shadow: 0 0 22px #a855f7;
 }
 
-#products {
-    padding: 80px 8%;
-    text-align: center;
+#products,
+#application {
+    margin-top: 65px;
+    padding: 30px;
+    border: 1px solid #30203e;
+    border-radius: 18px;
+    background: #100b18;
 }
 
-#products h2 {
+#products h2,
+#application h2 {
+    color: #d8b4fe;
+    margin-bottom: 25px;
     font-family: 'Orbitron', sans-serif;
-    color: #c084fc;
-    margin-bottom: 40px;
 }
 
 .product {
-    background: #110d1b;
-    border: 1px solid #43236b;
+    padding: 25px;
+    max-width: 340px;
+    border: 1px solid #7133a0;
     border-radius: 15px;
-    padding: 35px;
-    max-width: 350px;
-    margin: auto;
-    box-shadow: 0 0 25px #6b21a822;
+    background: linear-gradient(145deg, #21132e, #100b18);
+    box-shadow: 0 0 20px #9333ea22;
 }
 
 .product h3 {
-    font-size: 22px;
-    margin-bottom: 15px;
+    font-size: 21px;
+    margin-bottom: 12px;
 }
 
 .product p {
@@ -106,13 +123,41 @@ header p {
 .product strong {
     display: block;
     color: #c084fc;
-    font-size: 25px;
-    margin-bottom: 25px;
+    font-size: 24px;
+    margin-bottom: 18px;
+}
+
+#application p {
+    color: #aaa;
+    margin-bottom: 22px;
 }
 
 footer {
+    margin-top: 70px;
+    padding: 28px;
     text-align: center;
-    padding: 30px;
-    border-top: 1px solid #29203d;
+    background: #100b18;
     color: #777;
+    border-top: 1px solid #38204d;
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .hero {
+        padding: 60px 18px;
+    }
+
+    #products,
+    #application {
+        padding: 20px;
+    }
+
+    .product {
+        max-width: 100%;
+    }
 }
