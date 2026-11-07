@@ -309,3 +309,8 @@ footer {
 .support-card a {
     transform: translateY(-25px);
 }
+.support-card a {
+    position: relative !important;
+    top: -25px !important;
+    transform: none !important;
+}
