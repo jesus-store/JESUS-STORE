@@ -4,6 +4,7 @@ const API_URL = "https://jesus-store.onrender.com";
 let selectedProduct = null;
 let adminUser = null;
 let allOrders = [];
+
 function escapeHTML(value) {
     return String(value ?? "").replace(/[&<>"']/g, char => ({
         "&": "&amp;",
@@ -60,8 +61,9 @@ async function siparisGonder() {
             throw new Error(data.message || "Sipariş oluşturulamadı.");
         }
 
-        if (message) message.textContent =
-            `Siparişin alındı! Takip kodun: ${data.trackingCode}`;
+        if (message) {
+            message.textContent = `Siparişin alındı! Takip kodun: ${data.trackingCode}`;
+        }
 
         const trackingInput = document.getElementById("trackingCode");
         if (trackingInput) trackingInput.value = data.trackingCode;
@@ -282,6 +284,22 @@ async function adminPaneliAc() {
                         <button class="admin-refresh" onclick="siparisleriYukle()">YENİLE ↻</button>
                     </div>
 
+                    <div class="order-filters">
+                        <input
+                            type="text"
+                            id="orderSearch"
+                            placeholder="Müşteri, Discord, ürün veya takip kodu ara..."
+                            oninput="siparisleriFiltrele()"
+                        >
+
+                        <select id="orderStatusFilter" onchange="siparisleriFiltrele()">
+                            <option value="Tümü">Tüm Durumlar</option>
+                            <option value="Beklemede">Beklemede</option>
+                            <option value="İşlemde">İşlemde</option>
+                            <option value="Tamamlandı">Tamamlandı</option>
+                        </select>
+                    </div>
+
                     <div class="admin-table-wrap">
                         <table class="admin-table">
                             <thead>
@@ -338,70 +356,109 @@ async function siparisleriYukle() {
 
     try {
         const data = await adminFetch("/admin/orders");
-        const orders = data.orders || [];
 
-        document.getElementById("statTotal").textContent = orders.length;
+        allOrders = data.orders || [];
+
+        document.getElementById("statTotal").textContent = allOrders.length;
         document.getElementById("statPending").textContent =
-            orders.filter(o => o.status === "Beklemede").length;
+            allOrders.filter(o => o.status === "Beklemede").length;
         document.getElementById("statProcessing").textContent =
-            orders.filter(o => o.status === "İşlemde").length;
+            allOrders.filter(o => o.status === "İşlemde").length;
         document.getElementById("statCompleted").textContent =
-            orders.filter(o => o.status === "Tamamlandı").length;
+            allOrders.filter(o => o.status === "Tamamlandı").length;
 
-        if (!orders.length) {
-            area.innerHTML = `<tr><td colspan="6">Henüz sipariş bulunmuyor.</td></tr>`;
-            return;
-        }
-
-        area.innerHTML = orders.map(item => {
-            const id = Number(item.id);
-            const statusClass = item.status === "Tamamlandı"
-                ? "completed"
-                : item.status === "İşlemde" ? "processing" : "pending";
-
-            return `
-                <tr>
-                    <td>
-                        <strong>#${id}</strong>
-                        <small>${escapeHTML(item.tracking_code)}</small>
-                    </td>
-                    <td>
-                        <strong>${escapeHTML(item.customer)}</strong>
-                        <small>${escapeHTML(item.discord)}</small>
-                    </td>
-                    <td>${escapeHTML(item.product)}</td>
-                    <td>${escapeHTML(item.price)} TL</td>
-                    <td>
-                        <span class="admin-status ${statusClass}">
-                            ${escapeHTML(item.status)}
-                        </span>
-                    </td>
-                    <td>
-                        <div class="table-actions">
-                            <select id="status-${id}">
-                                <option value="Beklemede" ${item.status === "Beklemede" ? "selected" : ""}>Beklemede</option>
-                                <option value="İşlemde" ${item.status === "İşlemde" ? "selected" : ""}>İşlemde</option>
-                                <option value="Tamamlandı" ${item.status === "Tamamlandı" ? "selected" : ""}>Tamamlandı</option>
-                            </select>
-                            <button onclick="siparisDurumuDegistir(${id})">Kaydet</button>
-                            <button class="admin-history-button" onclick="siparisLoglariniGoster(${id})">Geçmiş</button>
-                            ${adminUser.role === "owner" ? `
-                                <button class="admin-delete-button" onclick="siparisSil(${id})">Sil</button>
-                            ` : ""}
-                        </div>
-                    </td>
-                </tr>
-                <tr class="admin-log-row">
-                    <td colspan="6">
-                        <div class="admin-logs" id="logs-${id}" hidden></div>
-                    </td>
-                </tr>
-            `;
-        }).join("");
+        siparisleriFiltrele();
 
     } catch (error) {
         area.innerHTML = `<tr><td colspan="6">${escapeHTML(error.message)}</td></tr>`;
     }
+}
+
+function siparisleriFiltrele() {
+    const area = document.getElementById("adminOrders");
+    if (!area) return;
+
+    const search = (
+        document.getElementById("orderSearch")?.value || ""
+    ).trim().toLocaleLowerCase("tr-TR");
+
+    const statusFilter =
+        document.getElementById("orderStatusFilter")?.value || "Tümü";
+
+    const filteredOrders = allOrders.filter(item => {
+        const searchableText = [
+            item.id,
+            item.tracking_code,
+            item.customer,
+            item.discord,
+            item.product
+        ].join(" ").toLocaleLowerCase("tr-TR");
+
+        const matchesSearch = searchableText.includes(search);
+        const matchesStatus =
+            statusFilter === "Tümü" || item.status === statusFilter;
+
+        return matchesSearch && matchesStatus;
+    });
+
+    if (!filteredOrders.length) {
+        area.innerHTML = `
+            <tr>
+                <td colspan="6">Aramana uygun sipariş bulunamadı.</td>
+            </tr>
+        `;
+        return;
+    }
+
+    area.innerHTML = filteredOrders.map(item => {
+        const id = Number(item.id);
+
+        const statusClass = item.status === "Tamamlandı"
+            ? "completed"
+            : item.status === "İşlemde" ? "processing" : "pending";
+
+        return `
+            <tr>
+                <td>
+                    <strong>#${id}</strong>
+                    <small>${escapeHTML(item.tracking_code)}</small>
+                </td>
+                <td>
+                    <strong>${escapeHTML(item.customer)}</strong>
+                    <small>${escapeHTML(item.discord)}</small>
+                </td>
+                <td>${escapeHTML(item.product)}</td>
+                <td>${escapeHTML(item.price)} TL</td>
+                <td>
+                    <span class="admin-status ${statusClass}">
+                        ${escapeHTML(item.status)}
+                    </span>
+                </td>
+                <td>
+                    <div class="table-actions">
+                        <select id="status-${id}">
+                            <option value="Beklemede" ${item.status === "Beklemede" ? "selected" : ""}>Beklemede</option>
+                            <option value="İşlemde" ${item.status === "İşlemde" ? "selected" : ""}>İşlemde</option>
+                            <option value="Tamamlandı" ${item.status === "Tamamlandı" ? "selected" : ""}>Tamamlandı</option>
+                        </select>
+
+                        <button onclick="siparisDurumuDegistir(${id})">Kaydet</button>
+                        <button class="admin-history-button" onclick="siparisLoglariniGoster(${id})">Geçmiş</button>
+
+                        ${adminUser.role === "owner" ? `
+                            <button class="admin-delete-button" onclick="siparisSil(${id})">Sil</button>
+                        ` : ""}
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="admin-log-row">
+                <td colspan="6">
+                    <div class="admin-logs" id="logs-${id}" hidden></div>
+                </td>
+            </tr>
+        `;
+    }).join("");
 }
 
 async function siparisDurumuDegistir(id) {
@@ -499,6 +556,7 @@ async function ekipPaneliniYukle() {
 
             <div class="staff-list">
                 <h4>Mevcut Ekip Üyeleri (${staff.length})</h4>
+
                 ${staff.length ? staff.map(person => `
                     <div class="staff-item">
                         <div>
@@ -556,6 +614,7 @@ async function ekipUyesiSil(id) {
 function adminCikis() {
     sessionStorage.removeItem("jesusAdminToken");
     adminUser = null;
+    allOrders = [];
 
     const panel = document.getElementById("jesusAdminPanel");
     if (panel) panel.remove();
