@@ -6,8 +6,14 @@ const { Pool } = require("pg");
 
 const app = express();
 
+// YENİ JESUS STORE ADRESİ
 app.use(cors({
-    origin: "https://efeorgen1524-eng.github.io"
+    origin: [
+        "https://jesus-store.github.io",
+        "https://efeorgen1524-eng.github.io"
+    ],
+    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 app.use(express.json({ limit: "1mb" }));
@@ -203,6 +209,7 @@ async function initDatabase() {
     console.log("JESUS STORE sahip hesapları kontrol edildi.");
 }
 
+// ANA SAYFA
 app.get("/", (req, res) => {
     res.send("JESUS STORE SERVER ACTIVE 🔥");
 });
@@ -314,7 +321,7 @@ app.get("/track/:code", async (req, res) => {
     }
 });
 
-// GİRİŞ
+// YÖNETİCİ GİRİŞİ
 app.post("/admin/login", async (req, res) => {
     try {
         const username = String(req.body.username || "").trim().toLowerCase();
@@ -690,6 +697,7 @@ app.post("/application", async (req, res) => {
     }
 });
 
+// SUNUCUYU BAŞLAT
 const PORT = process.env.PORT || 3000;
 
 initDatabase()
