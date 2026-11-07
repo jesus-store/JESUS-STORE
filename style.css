@@ -1208,3 +1208,83 @@ footer {
         min-width: 0;
     }
 }
+/* ADMIN TABLOSU BEYAZ - MOR TASARIM */
+
+.admin-table th {
+    color: #b879ff;
+    background: #171020;
+    border-bottom: 1px solid #63369b;
+}
+
+.admin-table td {
+    color: #f0e8fa;
+    border-bottom: 1px solid rgba(168, 85, 247, 0.15);
+}
+
+.admin-table tr:hover td {
+    background: rgba(168, 85, 247, 0.07);
+}
+
+/* Müşteri ve sipariş bilgileri */
+.admin-table td strong {
+    color: #ffffff;
+}
+
+.admin-table td small {
+    color: #bda5d8;
+}
+
+/* Durum seçme kutusu */
+.admin-table select {
+    background: #1b1226;
+    color: #d9b8ff;
+    border: 1px solid #8246c5;
+    border-radius: 7px;
+}
+
+/* Durum etiketleri */
+.admin-status {
+    font-weight: 700;
+    border: 1px solid transparent;
+}
+
+.admin-status.pending {
+    color: #d8b5ff;
+    background: rgba(168, 85, 247, 0.15);
+    border-color: #7541a8;
+}
+
+.admin-status.processing {
+    color: #ffffff;
+    background: rgba(126, 65, 190, 0.25);
+    border-color: #9b59d0;
+}
+
+.admin-status.completed {
+    color: #e5caff;
+    background: rgba(168, 85, 247, 0.25);
+    border-color: #b879ff;
+}
+
+/* Tablo butonları */
+.admin-table button {
+    background: #7135a8;
+    color: white;
+    border: 1px solid #a855f7;
+}
+
+.admin-table button:hover {
+    background: #914bd0;
+}
+
+/* Arama ve filtre yazıları */
+.order-filters input,
+.order-filters select {
+    color: #ffffff;
+    border-color: #8246c5;
+}
+
+.order-filters select option {
+    background: #171020;
+    color: white;
+}
