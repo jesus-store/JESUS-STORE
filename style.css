@@ -911,3 +911,180 @@ select option {
         scroll-behavior: auto !important;
     }
 }
+
+/* =================================
+   JESUS STORE - CANLI TASARIM
+================================= */
+
+/* Hareketli arka plan ışıkları */
+body {
+    background:
+        radial-gradient(ellipse at 15% 20%, rgba(130, 35, 255, 0.13), transparent 35%),
+        radial-gradient(ellipse at 85% 65%, rgba(80, 20, 180, 0.12), transparent 35%),
+        #08060d;
+    background-attachment: fixed;
+}
+
+/* Logo animasyonu */
+.logo,
+.logo-text {
+    animation: logoGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow {
+    from {
+        filter: drop-shadow(0 0 3px #8b35ff);
+    }
+    to {
+        filter: drop-shadow(0 0 13px #a855ff);
+    }
+}
+
+/* Ürün kartları */
+.product-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(160, 80, 255, 0.16);
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+
+.product-card::before {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: -60%;
+    width: 50%;
+    height: 300%;
+    transform: rotate(25deg);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.08),
+        transparent
+    );
+    transition: .7s;
+    pointer-events: none;
+}
+
+.product-card:hover::before {
+    left: 130%;
+}
+
+.product-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: #9b4dff;
+    box-shadow:
+        0 12px 35px rgba(130, 40, 255, .2),
+        0 0 18px rgba(130, 40, 255, .12);
+}
+
+/* Ürün ikonları */
+.product-icon {
+    transition: transform .35s ease, filter .35s ease;
+}
+
+.product-card:hover .product-icon {
+    transform: scale(1.15) rotate(-6deg);
+    filter: drop-shadow(0 0 12px #a855ff);
+}
+
+/* Butonlar */
+button,
+.btn,
+.hero-btn,
+a.button {
+    transition: transform .25s ease, box-shadow .25s ease, filter .25s ease;
+}
+
+button:hover,
+.btn:hover,
+.hero-btn:hover,
+a.button:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.15);
+    box-shadow: 0 7px 22px rgba(145, 60, 255, .3);
+}
+
+button:active,
+.btn:active {
+    transform: scale(.96);
+}
+
+/* Ekip kartları */
+.team-card {
+    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    border-color: #9b4dff;
+    box-shadow: 0 10px 30px rgba(130, 40, 255, .2);
+}
+
+/* Bölüm başlıkları */
+.section-title {
+    text-shadow: 0 0 18px rgba(155, 77, 255, .35);
+}
+
+/* Form alanları */
+input,
+textarea,
+select {
+    transition: border-color .25s ease, box-shadow .25s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #9b4dff !important;
+    box-shadow: 0 0 0 3px rgba(155, 77, 255, .13);
+}
+
+/* Sayfa bölümlerine giriş animasyonu */
+.hero,
+.products,
+.team,
+.support,
+.application,
+#tracking {
+    animation: sectionEnter .8s ease both;
+}
+
+@keyframes sectionEnter {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Menü geçişleri */
+nav a {
+    transition: color .25s ease, text-shadow .25s ease;
+}
+
+nav a:hover {
+    color: #bd8aff;
+    text-shadow: 0 0 12px #8b35ff;
+}
+
+/* Kaydırma çubuğu */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(#a855ff, #5420a0);
+    border-radius: 10px;
+}
+
+/* Hareket hassasiyeti olan kullanıcılar için */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
