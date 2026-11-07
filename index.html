@@ -10,10 +10,15 @@
 <body>
 
 <header>
-    <div class="logo">JESUS STORE</div>
+    <a href="#home" class="jp-logo">
+        <div class="jp-symbol">JP</div>
+        <span class="jp-name">JESUS PACK</span>
+    </a>
+
     <nav>
         <a href="#home">Ana Sayfa</a>
         <a href="#products">Ürünler</a>
+        <a href="#team">Yetkili Ekibi</a>
         <a href="#tracking">Sipariş Takip</a>
         <a href="#application">Admin Başvurusu</a>
     </nav>
@@ -22,17 +27,20 @@
 <section class="hero" id="home">
     <div>
         <span class="hero-tag">PREMIUM DIGITAL PRODUCTS</span>
-        <h1>JESUS STORE #TRNO1</h1>
-        <p>JESUS STORE dünyasına hoş geldin.</p>
-        <a href="#products" class="hero-button">ÜRÜNLERİ KEŞFET</a>
+        <h1>JESUS STORE <span>#TRNO1</span></h1>
+        <p>Kalitenin yeni adresine hoş geldin.</p>
+        <a href="#products" class="btn btn-primary">ÜRÜNLERİ KEŞFET</a>
     </div>
 </section>
+
+<!-- ÜRÜNLER -->
 
 <section class="products" id="products">
     <h2 class="section-title">ÜRÜNLERİMİZ</h2>
 
     <div class="products-grid">
-        <div class="product">
+
+        <div class="product-card">
             <div class="product-number">01</div>
             <div class="product-icon">⚡</div>
             <h3>TWEAK</h3>
@@ -41,17 +49,8 @@
             <button onclick="order('Tweak', 400)">SATIN AL</button>
         </div>
 
-        <div class="product">
+        <div class="product-card">
             <div class="product-number">02</div>
-            <div class="product-icon">🎯</div>
-            <h3>MACRO-STRAFE</h3>
-            <p>Premium dijital ürün.</p>
-            <div class="price">300 TL</div>
-            <button onclick="order('Macro-Strafe', 300)">SATIN AL</button>
-        </div>
-
-        <div class="product">
-            <div class="product-number">03</div>
             <div class="product-icon">⚙️</div>
             <h3>CONFIG</h3>
             <p>Premium dijital ürün.</p>
@@ -59,8 +58,8 @@
             <button onclick="order('Config', 150)">SATIN AL</button>
         </div>
 
-        <div class="product">
-            <div class="product-number">04</div>
+        <div class="product-card">
+            <div class="product-number">03</div>
             <div class="product-icon">🌐</div>
             <h3>SOCIAL PACK</h3>
             <p>Premium dijital ürün.</p>
@@ -68,16 +67,77 @@
             <button onclick="order('Social Pack', 100)">SATIN AL</button>
         </div>
 
-        <div class="product">
-            <div class="product-number">05</div>
+        <div class="product-card">
+            <div class="product-number">04</div>
             <div class="product-icon">💻</div>
             <h3>REGEDIT</h3>
             <p>Premium dijital ürün.</p>
             <div class="price">100 TL</div>
             <button onclick="order('Regedit', 100)">SATIN AL</button>
         </div>
+
     </div>
 </section>
+
+<!-- YETKİLİ EKİBİ -->
+
+<section class="team-section" id="team">
+
+    <div class="team-heading">
+        <h2>YETKİLİ <span>EKİBİMİZ</span></h2>
+        <p>JESUS STORE yönetim ve geliştirme ekibi.</p>
+    </div>
+
+    <div class="team-grid">
+
+        <a class="team-card"
+           href="https://discord.com/users/1505316108184588298"
+           target="_blank"
+           rel="noopener noreferrer">
+
+            <div class="team-avatar">JP</div>
+            <h3>Kyzer</h3>
+            <span class="team-role">OWNER</span>
+            <p class="team-id">Discord Profilini Gör</p>
+        </a>
+
+        <a class="team-card"
+           href="https://discord.com/users/1098606854742999050"
+           target="_blank"
+           rel="noopener noreferrer">
+
+            <div class="team-avatar">JP</div>
+            <h3>Quante</h3>
+            <span class="team-role">OWNER</span>
+            <p class="team-id">Discord Profilini Gör</p>
+        </a>
+
+        <a class="team-card"
+           href="https://discord.com/users/1401881567852236832"
+           target="_blank"
+           rel="noopener noreferrer">
+
+            <div class="team-avatar">JP</div>
+            <h3>Luxymm</h3>
+            <span class="team-role">CONFIGER</span>
+            <p class="team-id">Discord Profilini Gör</p>
+        </a>
+
+        <a class="team-card"
+           href="https://discord.com/users/1144252070766051380"
+           target="_blank"
+           rel="noopener noreferrer">
+
+            <div class="team-avatar">JP</div>
+            <h3>Lynx</h3>
+            <span class="team-role">CONFIGER</span>
+            <p class="team-id">Discord Profilini Gör</p>
+        </a>
+
+    </div>
+</section>
+
+<!-- SİPARİŞ FORMU -->
 
 <section class="application" id="orderForm">
     <h2>SİPARİŞ BİLGİLERİ</h2>
@@ -93,6 +153,8 @@
     </div>
 </section>
 
+<!-- SİPARİŞ TAKİP -->
+
 <section class="application" id="tracking">
     <h2>SİPARİŞ TAKİP</h2>
     <p>Sipariş kodunu girerek siparişinin durumunu öğren.</p>
@@ -104,16 +166,22 @@
     </div>
 </section>
 
+<!-- MÜŞTERİ DESTEĞİ -->
+
 <section class="support-section">
     <div class="support-card">
         <div class="support-icon">🎧</div>
         <h3>MÜŞTERİ DESTEĞİ</h3>
         <p>Soruların ve siparişlerin için destek ekibimize ulaş.</p>
-        <a href="https://discord.gg/n8ymmWAYA" target="_blank" rel="noopener noreferrer">
+        <a href="https://discord.gg/n8ymmWAYA"
+           target="_blank"
+           rel="noopener noreferrer">
             DESTEK AL
         </a>
     </div>
 </section>
+
+<!-- EKİP BAŞVURUSU -->
 
 <section class="application" id="application">
     <h2>EKİBİMİZE KATIL</h2>
@@ -130,6 +198,8 @@
     </div>
 </section>
 
+<!-- YÖNETİCİ GİRİŞİ -->
+
 <section class="application" id="adminLogin">
     <h2>YÖNETİCİ GİRİŞİ</h2>
     <p>Yetkili personel girişi.</p>
@@ -143,9 +213,14 @@
 </section>
 
 <footer>
-    © 2026 JESUS STORE — Tüm hakları saklıdır.
+    <div class="jp-logo">
+        <div class="jp-symbol">JP</div>
+        <span class="jp-name">JESUS PACK</span>
+    </div>
+    <p>© 2026 JESUS STORE — Tüm hakları saklıdır.</p>
 </footer>
 
 <script src="script.js"></script>
+
 </body>
 </html>
