@@ -1,3 +1,4 @@
+
 const express = require("express");
 const cors = require("cors");
 
@@ -45,20 +46,23 @@ app.post("/order", async (req, res) => {
                         { name: "Ürün", value: String(product) },
                         { name: "Fiyat", value: String(price) + " TL" },
                         { name: "Müşteri", value: String(customer) },
-                        { name: "Discord", value: String(discord) }
+                        { name: "Discord Kullanıcı Adı / ID", value: String(discord) }
                     ],
                     footer: { text: "JESUS STORE" }
                 }]
             })
         });
 
-        if (!response.ok) throw new Error("Discord hatası");
+        if (!response.ok) throw new Error("Discord bildirimi gönderilemedi.");
 
         res.json({ success: true });
 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ success: false });
+        res.status(500).json({
+            success: false,
+            message: "Sipariş gönderilemedi."
+        });
     }
 });
 
@@ -92,7 +96,7 @@ app.post("/application", async (req, res) => {
                     color: 10181046,
                     fields: [
                         { name: "Ad Soyad", value: String(name) },
-                        { name: "Discord", value: String(discord) },
+                        { name: "Discord Kullanıcı Adı / ID", value: String(discord) },
                         { name: "Yaş", value: String(age) },
                         { name: "Başvuru Sebebi", value: String(reason) },
                         { name: "Deneyim", value: String(experience || "Belirtilmedi") }
@@ -102,13 +106,16 @@ app.post("/application", async (req, res) => {
             })
         });
 
-        if (!response.ok) throw new Error("Discord hatası");
+        if (!response.ok) throw new Error("Discord bildirimi gönderilemedi.");
 
         res.json({ success: true });
 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ success: false });
+        res.status(500).json({
+            success: false,
+            message: "Başvuru gönderilemedi."
+        });
     }
 });
 
