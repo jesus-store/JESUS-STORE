@@ -102,7 +102,6 @@ nav a:hover {
     margin-bottom: 40px;
 }
 
-/* ÜRÜNLER */
 .products-grid {
     display: flex;
     flex-direction: row;
@@ -246,7 +245,7 @@ nav a:hover {
     font-weight: 800;
 }
 
-/* ADMIN BAŞVURUSU */
+/* FORM ALANLARI */
 .application {
     padding: 70px 20px;
     background: #100a18;
@@ -264,7 +263,8 @@ nav a:hover {
     margin-bottom: 25px;
 }
 
-.application button {
+.application button,
+.store-form button {
     padding: 14px 30px;
     background: linear-gradient(90deg, #7e22ce, #a855f7);
     color: white;
@@ -272,6 +272,79 @@ nav a:hover {
     border-radius: 8px;
     font-weight: 800;
     cursor: pointer;
+    transition: .2s;
+}
+
+.application button:hover,
+.store-form button:hover {
+    filter: brightness(1.2);
+    transform: translateY(-2px);
+}
+
+.store-form {
+    width: 100%;
+    max-width: 450px;
+    margin: 25px auto 0;
+    padding: 25px;
+    background: linear-gradient(145deg, #191022, #0e0915);
+    border: 1px solid #492765;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.store-form input,
+.store-form textarea {
+    width: 100%;
+    padding: 15px;
+    background: #08060d;
+    border: 1px solid #492765;
+    border-radius: 8px;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+}
+
+.store-form input:focus,
+.store-form textarea:focus {
+    border-color: #c084fc;
+    box-shadow: 0 0 10px #9333ea33;
+}
+
+.store-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.store-form input::placeholder,
+.store-form textarea::placeholder {
+    color: #887994;
+}
+
+.store-form p {
+    color: #d8b4fe;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.store-form[hidden] {
+    display: none;
+}
+
+#orderForm {
+    display: none;
+}
+
+#orderForm:target {
+    display: block;
+}
+
+#trackingResult,
+#orderMessage,
+#adminMessage {
+    overflow-wrap: anywhere;
+    line-height: 1.7;
 }
 
 footer {
@@ -307,5 +380,13 @@ footer {
 
     nav a {
         font-size: 12px;
+    }
+
+    .application {
+        padding: 45px 15px;
+    }
+
+    .store-form {
+        padding: 18px;
     }
 }
