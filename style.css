@@ -15,11 +15,12 @@ body {
     background: #08060d;
     color: white;
     font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
 }
 
 header {
     min-height: 85px;
-    padding: 20px 7%;
+    padding: 20px 5%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -42,7 +43,6 @@ nav a {
     color: #ddd;
     text-decoration: none;
     font-size: 14px;
-    transition: .3s;
 }
 
 nav a:hover {
@@ -50,7 +50,7 @@ nav a:hover {
 }
 
 .hero {
-    min-height: 400px;
+    min-height: 380px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -60,6 +60,7 @@ nav a:hover {
 }
 
 .hero-tag {
+    display: block;
     color: #c084fc;
     letter-spacing: 4px;
     font-size: 12px;
@@ -73,7 +74,7 @@ nav a:hover {
     margin-bottom: 20px;
 }
 
-.hero-content > p:not(.hero-tag) {
+.hero p {
     color: #b9a8c9;
     margin-bottom: 30px;
 }
@@ -90,7 +91,7 @@ nav a:hover {
 
 .products {
     width: 100%;
-    padding: 75px 7%;
+    padding: 65px 3%;
 }
 
 .section-title {
@@ -98,78 +99,93 @@ nav a:hover {
     font-family: 'Orbitron', sans-serif;
     font-size: 30px;
     color: #c084fc;
-    margin-bottom: 45px;
+    margin-bottom: 40px;
 }
 
-/* ÜRÜNLERİ YAN YANA DİZEN ANA ALAN */
+/* BEŞ ÜRÜN TEK SIRADA */
+
 .products-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 25px;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 15px;
     width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
+    overflow-x: auto;
+    padding: 8px 4px 18px;
 }
 
 .product {
+    flex: 1 0 calc(20% - 12px);
+    min-width: 170px;
+    aspect-ratio: 1 / 1;
     position: relative;
-    min-width: 0;
     background: linear-gradient(145deg, #191022, #0e0915);
-    border: 1px solid #39204f;
-    border-radius: 15px;
-    padding: 30px 22px;
+    border: 1px solid #492765;
+    border-radius: 18px;
+    padding: 18px 12px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     transition: .3s;
 }
 
 .product:hover {
-    transform: translateY(-7px);
-    border-color: #a855f7;
+    transform: translateY(-6px);
+    border-color: #c084fc;
     box-shadow: 0 0 25px #9333ea44;
 }
 
 .product-number {
+    position: absolute;
+    top: 12px;
+    left: 14px;
     color: #75449a;
     font-family: 'Orbitron', sans-serif;
-    font-size: 13px;
-    margin-bottom: 18px;
+    font-size: 11px;
+}
+
+.product-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
 }
 
 .product h3 {
     color: #e9d5ff;
     font-family: 'Orbitron', sans-serif;
-    font-size: 18px;
-    margin-bottom: 15px;
+    font-size: clamp(11px, 1.2vw, 16px);
+    margin-bottom: 12px;
 }
 
 .product p {
     color: #a99ab7;
-    font-size: 13px;
-    margin-bottom: 22px;
+    font-size: 11px;
+    margin-bottom: 14px;
 }
 
 .price {
     color: #c084fc;
-    font-size: 27px;
+    font-size: 22px;
     font-weight: 800;
-    margin-bottom: 22px;
+    margin-bottom: 15px;
 }
 
-.product button,
-.application button {
+.product button {
     width: 100%;
-    padding: 13px;
+    padding: 11px 5px;
     background: linear-gradient(90deg, #7e22ce, #a855f7);
     color: white;
     border: none;
     border-radius: 8px;
+    font-size: 11px;
     font-weight: 800;
     cursor: pointer;
-    transition: .3s;
 }
 
-.product button:hover,
-.application button:hover {
+.product button:hover {
     filter: brightness(1.2);
 }
 
@@ -191,8 +207,13 @@ nav a:hover {
 }
 
 .application button {
-    width: auto;
     padding: 14px 30px;
+    background: linear-gradient(90deg, #7e22ce, #a855f7);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 800;
+    cursor: pointer;
 }
 
 footer {
@@ -202,14 +223,18 @@ footer {
     border-top: 1px solid #2b1740;
 }
 
-/* TABLET */
+/* DAR EKRANLARDA DA TEK SIRA */
 @media (max-width: 900px) {
-    .products-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    .products {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .product {
+        flex-basis: 190px;
     }
 }
 
-/* TELEFON */
 @media (max-width: 550px) {
     header {
         flex-direction: column;
@@ -224,9 +249,5 @@ footer {
 
     nav a {
         font-size: 12px;
-    }
-
-    .products-grid {
-        grid-template-columns: 1fr !important;
     }
 }
