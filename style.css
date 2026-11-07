@@ -796,3 +796,360 @@ footer {
         font-size: 19px;
     }
 }
+
+/* JESUS STORE - SADE ADMİN TABLOSU */
+
+.admin-container {
+    max-width: 1250px;
+    margin: 40px auto;
+    padding: 25px;
+    background: #0e0b14;
+    border: 1px solid #302039;
+    border-radius: 16px;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #302039;
+}
+
+.admin-header h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 24px;
+    margin: 8px 0;
+}
+
+.admin-header p {
+    color: #a99ab5;
+    font-size: 13px;
+}
+
+.admin-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.admin-eyebrow {
+    color: #a76bdb;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.admin-role {
+    padding: 8px 12px;
+    border-radius: 20px;
+    background: #281735;
+    color: #d8b1ff;
+    font-size: 11px;
+}
+
+.admin-logout,
+.admin-refresh {
+    padding: 10px 15px;
+    background: #25152f;
+    color: white;
+    border: 1px solid #51316a;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.admin-logout:hover,
+.admin-refresh:hover {
+    background: #7136a5;
+}
+
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.admin-stat {
+    padding: 18px;
+    background: #17111f;
+    border: 1px solid #302039;
+    border-radius: 12px;
+}
+
+.admin-stat span {
+    display: block;
+    color: #a99ab5;
+    font-size: 11px;
+    margin-bottom: 12px;
+}
+
+.admin-stat strong {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 27px;
+    color: #d4a1ff;
+}
+
+.admin-section {
+    margin-top: 22px;
+    padding: 20px;
+    background: #120e19;
+    border: 1px solid #302039;
+    border-radius: 13px;
+}
+
+.admin-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.admin-section-heading h3 {
+    margin-top: 6px;
+    font-size: 19px;
+}
+
+.admin-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 850px;
+    text-align: left;
+}
+
+.admin-table th {
+    padding: 14px 12px;
+    color: #a88bbd;
+    background: #1c1425;
+    font-size: 11px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.admin-table td {
+    padding: 15px 12px;
+    border-bottom: 1px solid #2b2033;
+    color: #e5dbea;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+.admin-table tbody tr:hover {
+    background: #191220;
+}
+
+.admin-table td strong,
+.admin-table td small {
+    display: block;
+}
+
+.admin-table td small {
+    margin-top: 5px;
+    color: #95849f;
+    font-size: 11px;
+}
+
+.admin-table td[colspan="6"] {
+    padding: 25px;
+    text-align: center;
+    color: #a99ab5;
+}
+
+.admin-status {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.admin-status.pending {
+    background: #3b3018;
+    color: #ffd77a;
+}
+
+.admin-status.processing {
+    background: #172e48;
+    color: #80c5ff;
+}
+
+.admin-status.completed {
+    background: #173b2b;
+    color: #7af0ad;
+}
+
+.table-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.table-actions select {
+    max-width: 115px;
+    padding: 8px;
+    background: #0c0911;
+    color: white;
+    border: 1px solid #49305c;
+    border-radius: 6px;
+}
+
+.table-actions button {
+    padding: 8px 10px;
+    background: #7136a5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.table-actions button:hover {
+    background: #9852d0;
+}
+
+.table-actions .admin-history-button {
+    background: #26364a;
+}
+
+.table-actions .admin-delete-button {
+    background: #752c3b;
+}
+
+.admin-log-row td {
+    padding: 0 !important;
+    border: none;
+}
+
+.admin-logs {
+    padding: 12px;
+    background: #0c0911;
+}
+
+.admin-log-item {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    margin: 5px 0;
+    background: #191220;
+    border-left: 3px solid #a45bd6;
+    font-size: 12px;
+}
+
+.admin-log-item small {
+    color: #95849f;
+}
+
+.staff-create-box {
+    padding: 18px;
+    background: #191220;
+    border: 1px solid #302039;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.staff-create-box p {
+    color: #a99ab5;
+    font-size: 12px;
+    margin-top: 7px;
+}
+
+.staff-create-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.staff-create-inputs input {
+    flex: 1;
+    min-width: 180px;
+    padding: 11px;
+    background: #0c0911;
+    color: white;
+    border: 1px solid #49305c;
+    border-radius: 7px;
+}
+
+.staff-create-inputs button,
+.staff-item button {
+    padding: 10px 14px;
+    background: #7136a5;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.staff-list {
+    display: grid;
+    gap: 10px;
+}
+
+.staff-list h4 {
+    margin-bottom: 5px;
+}
+
+.staff-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    background: #191220;
+    border: 1px solid #302039;
+    border-radius: 9px;
+}
+
+.staff-item small {
+    display: block;
+    color: #95849f;
+    margin-top: 5px;
+}
+
+.staff-item button {
+    background: #752c3b;
+}
+
+.admin-empty {
+    padding: 25px;
+    text-align: center;
+    color: #a99ab5;
+}
+
+@media (max-width: 700px) {
+    .admin-container {
+        padding: 14px;
+    }
+
+    .admin-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .admin-section {
+        padding: 12px;
+    }
+
+    .admin-header h2 {
+        font-size: 19px;
+    }
+}
+
+@media (max-width: 420px) {
+    .admin-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .admin-stat strong {
+        font-size: 22px;
+    }
+}
