@@ -696,3 +696,54 @@ html {
         grid-template-columns: 1fr !important;
     }
 }
+/* JESUS STORE PRODUCT LAYOUT FIX */
+
+.products {
+    display: block !important;
+    width: 100% !important;
+    padding: 80px 6% !important;
+    overflow: hidden;
+}
+
+.products-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 28px !important;
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 40px auto 0 !important;
+    align-items: stretch !important;
+}
+
+.product-card {
+    display: flex !important;
+    flex-direction: column !important;
+    position: relative !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 280px;
+    margin: 0 !important;
+    padding: 30px !important;
+    box-sizing: border-box !important;
+}
+
+.product-card button {
+    margin-top: auto;
+}
+
+@media (max-width: 900px) {
+    .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+@media (max-width: 550px) {
+    .products {
+        padding: 55px 18px !important;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+}
