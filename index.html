@@ -32,7 +32,6 @@
     <h2 class="section-title">ÜRÜNLERİMİZ</h2>
 
     <div class="products-grid">
-
         <div class="product">
             <div class="product-number">01</div>
             <div class="product-icon">⚡</div>
@@ -77,11 +76,9 @@
             <div class="price">100 TL</div>
             <button onclick="order('Regedit', 100)">SATIN AL</button>
         </div>
-
     </div>
 </section>
 
-<!-- SİPARİŞ BİLGİLERİ -->
 <section class="application" id="orderForm">
     <h2>SİPARİŞ BİLGİLERİ</h2>
     <p>Sipariş vermek için bilgilerini doldur.</p>
@@ -96,7 +93,6 @@
     </div>
 </section>
 
-<!-- SİPARİŞ TAKİP -->
 <section class="application" id="tracking">
     <h2>SİPARİŞ TAKİP</h2>
     <p>Sipariş kodunu girerek siparişinin durumunu öğren.</p>
@@ -108,7 +104,6 @@
     </div>
 </section>
 
-<!-- MÜŞTERİ DESTEĞİ -->
 <section class="support-section">
     <div class="support-card">
         <div class="support-icon">🎧</div>
@@ -120,7 +115,6 @@
     </div>
 </section>
 
-<!-- ADMİN BAŞVURUSU -->
 <section class="application" id="application">
     <h2>EKİBİMİZE KATIL</h2>
     <p>JESUS STORE ekibinde yer almak için başvurunu gönder.</p>
@@ -136,7 +130,6 @@
     </div>
 </section>
 
-<!-- ADMİN PANELİ GİRİŞİ -->
 <section class="application" id="adminLogin">
     <h2>YÖNETİCİ GİRİŞİ</h2>
     <p>Yetkili personel girişi.</p>
@@ -154,77 +147,5 @@
 </footer>
 
 <script src="script.js"></script>
-
-<script>
-let selectedProduct = null;
-
-function order(product, price) {
-    selectedProduct = { product, price };
-
-    document.getElementById("selectedProduct").textContent =
-        product + " - " + price + " TL";
-
-    document.getElementById("orderForm").scrollIntoView({
-        behavior: "smooth"
-    });
-}
-
-function siparisFormKapat() {
-    selectedProduct = null;
-    document.getElementById("orderForm").style.display = "none";
-}
-
-async function siparisGonder() {
-    if (!selectedProduct) {
-        alert("Önce bir ürün seçmelisin.");
-        return;
-    }
-
-    const customer = document.getElementById("customerName").value.trim();
-    const discord = document.getElementById("discordInfo").value.trim();
-    const message = document.getElementById("orderMessage");
-
-    if (!customer || !discord) {
-        message.textContent = "Lütfen bütün bilgileri doldur.";
-        return;
-    }
-
-    message.textContent = "Sipariş oluşturuluyor...";
-
-    try {
-        const response = await fetch("https://jesus-store.onrender.com/order", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                product: selectedProduct.product,
-                price: selectedProduct.price,
-                customer,
-                discord
-            })
-        });
-
-        const data = await response.json();
-
-        if (!response.ok || !data.success) {
-            throw new Error(data.message || "Sipariş oluşturulamadı.");
-        }
-
-        message.textContent =
-            "Sipariş oluşturuldu! Takip kodun: " + data.trackingCode;
-
-        document.getElementById("trackingCode").value = data.trackingCode;
-
-        selectedProduct = null;
-
-    } catch (error) {
-        message.textContent = error.message;
-    }
-}
-
-function openApplication() {
-    const form = document.getElementById("applicationForm");
-    form.hidden = !form.hidden;
-}
-
 </body>
 </html>
