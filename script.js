@@ -218,7 +218,10 @@ async function adminPaneliAc() {
             return;
         }
 
-        adminUser = data.user || data.admin || data;
+        adminUser = {
+    username: data.username,
+    role: data.role
+};
 
         let panel = document.getElementById("jesusAdminPanel");
 
