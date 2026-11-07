@@ -7,10 +7,6 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 body {
     background: #08060d;
     color: #fff;
@@ -18,146 +14,180 @@ body {
 }
 
 header {
-    padding: 30px 8%;
+    padding: 25px 7%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background: #100b18;
-    border-bottom: 1px solid #38204d;
+    justify-content: space-between;
+    border-bottom: 1px solid #241332;
 }
 
-header h1 {
+.logo {
     font-family: 'Orbitron', sans-serif;
     color: #c084fc;
-    letter-spacing: 3px;
+    font-size: 27px;
+    font-weight: 800;
 }
 
-header p {
-    color: #aaa;
-    font-size: 12px;
-    letter-spacing: 2px;
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    transition: .3s;
 }
 
-main {
-    max-width: 1150px;
-    margin: auto;
-    padding: 35px 22px;
+nav a:hover {
+    color: #c084fc;
 }
 
 .hero {
-    min-height: 350px;
-    padding: 80px 30px;
+    min-height: 390px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    border: 1px solid #54247a;
-    border-radius: 22px;
-    background: radial-gradient(circle at center, #35134e, #110a1b 65%);
-    box-shadow: 0 0 35px #8b5cf633;
+    padding: 60px 20px;
+    background:
+        radial-gradient(ellipse at center, #45107855 0%, transparent 65%);
 }
 
-.hero h2 {
+.hero h1 {
     font-family: 'Orbitron', sans-serif;
-    font-size: clamp(25px, 5vw, 42px);
-    margin-bottom: 18px;
+    font-size: clamp(30px, 5vw, 55px);
+    margin-bottom: 20px;
+    color: #d8b4fe;
 }
 
 .hero p {
-    color: #c4b5d0;
-    margin-bottom: 30px;
+    color: #b9a8c9;
+    margin-bottom: 28px;
 }
 
 .hero a,
-button {
-    display: inline-block;
-    padding: 13px 24px;
-    border: 0;
-    border-radius: 9px;
-    background: linear-gradient(100deg, #7e22ce, #c084fc);
+.application button {
+    background: linear-gradient(90deg, #7e22ce, #a855f7);
     color: white;
-    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: 8px;
     text-decoration: none;
+    border: none;
     cursor: pointer;
-    transition: .2s;
+    font-weight: 700;
 }
 
-button:hover,
-.hero a:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 22px #a855f7;
+.products {
+    padding: 70px 7%;
 }
 
-#products,
-#application {
-    margin-top: 65px;
-    padding: 30px;
-    border: 1px solid #30203e;
-    border-radius: 18px;
-    background: #100b18;
-}
-
-#products h2,
-#application h2 {
-    color: #d8b4fe;
-    margin-bottom: 25px;
+.section-title {
+    text-align: center;
     font-family: 'Orbitron', sans-serif;
+    font-size: 30px;
+    color: #c084fc;
+    margin-bottom: 40px;
+}
+
+/* ÜRÜNLER YAN YANA */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+    width: 100%;
 }
 
 .product {
-    padding: 25px;
-    max-width: 340px;
-    border: 1px solid #7133a0;
+    background: linear-gradient(145deg, #171020, #0e0a14);
+    border: 1px solid #39204f;
     border-radius: 15px;
-    background: linear-gradient(145deg, #21132e, #100b18);
-    box-shadow: 0 0 20px #9333ea22;
+    padding: 28px 22px;
+    text-align: center;
+    transition: .3s;
+}
+
+.product:hover {
+    transform: translateY(-7px);
+    border-color: #a855f7;
+    box-shadow: 0 0 25px #9333ea33;
 }
 
 .product h3 {
-    font-size: 21px;
-    margin-bottom: 12px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 19px;
+    color: #d8b4fe;
+    margin-bottom: 15px;
 }
 
 .product p {
-    color: #aaa;
+    color: #b9a8c9;
     margin-bottom: 20px;
 }
 
-.product strong {
-    display: block;
+.price {
+    font-size: 25px;
+    font-weight: 800;
     color: #c084fc;
-    font-size: 24px;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
-#application p {
-    color: #aaa;
-    margin-bottom: 22px;
+.product button {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(90deg, #7e22ce, #a855f7);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.product button:hover {
+    filter: brightness(1.2);
+}
+
+.application {
+    padding: 65px 20px;
+    text-align: center;
+    background: #100a18;
+}
+
+.application h2 {
+    color: #c084fc;
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 20px;
+}
+
+.application p {
+    color: #b9a8c9;
+    margin-bottom: 25px;
 }
 
 footer {
-    margin-top: 70px;
-    padding: 28px;
+    padding: 25px;
     text-align: center;
-    background: #100b18;
-    color: #777;
-    border-top: 1px solid #38204d;
+    color: #887994;
+    border-top: 1px solid #241332;
 }
 
-@media (max-width: 600px) {
+/* TABLET */
+@media (max-width: 900px) {
+    .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* TELEFON */
+@media (max-width: 550px) {
     header {
         flex-direction: column;
-        gap: 12px;
-        text-align: center;
+        gap: 18px;
     }
 
-    .hero {
-        padding: 60px 18px;
+    nav a {
+        margin: 0 8px;
     }
 
-    #products,
-    #application {
-        padding: 20px;
-    }
-
-    .product {
-        max-width: 100%;
+    .products-grid {
+        grid-template-columns: 1fr;
     }
 }
