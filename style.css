@@ -7,31 +7,41 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: #08060d;
-    color: #fff;
+    color: white;
     font-family: 'Inter', sans-serif;
 }
 
 header {
-    padding: 25px 7%;
+    min-height: 85px;
+    padding: 20px 7%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #241332;
+    border-bottom: 1px solid #2b1740;
 }
 
 .logo {
     font-family: 'Orbitron', sans-serif;
     color: #c084fc;
-    font-size: 27px;
+    font-size: 25px;
     font-weight: 800;
 }
 
+nav {
+    display: flex;
+    gap: 25px;
+}
+
 nav a {
-    color: white;
+    color: #ddd;
     text-decoration: none;
-    margin-left: 25px;
+    font-size: 14px;
     transition: .3s;
 }
 
@@ -40,43 +50,47 @@ nav a:hover {
 }
 
 .hero {
-    min-height: 390px;
+    min-height: 400px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     text-align: center;
     padding: 60px 20px;
-    background:
-        radial-gradient(ellipse at center, #45107855 0%, transparent 65%);
+    background: radial-gradient(ellipse at center, #54118a55, transparent 70%);
+}
+
+.hero-tag {
+    color: #c084fc;
+    letter-spacing: 4px;
+    font-size: 12px;
+    margin-bottom: 20px;
 }
 
 .hero h1 {
     font-family: 'Orbitron', sans-serif;
     font-size: clamp(30px, 5vw, 55px);
+    color: #e9d5ff;
     margin-bottom: 20px;
-    color: #d8b4fe;
 }
 
-.hero p {
+.hero-content > p:not(.hero-tag) {
     color: #b9a8c9;
-    margin-bottom: 28px;
+    margin-bottom: 30px;
 }
 
-.hero a,
-.application button {
+.hero-button {
+    display: inline-block;
+    padding: 14px 28px;
     background: linear-gradient(90deg, #7e22ce, #a855f7);
     color: white;
-    padding: 14px 28px;
-    border-radius: 8px;
     text-decoration: none;
-    border: none;
-    cursor: pointer;
+    border-radius: 8px;
     font-weight: 700;
 }
 
 .products {
-    padding: 70px 7%;
+    width: 100%;
+    padding: 75px 7%;
 }
 
 .section-title {
@@ -84,22 +98,26 @@ nav a:hover {
     font-family: 'Orbitron', sans-serif;
     font-size: 30px;
     color: #c084fc;
-    margin-bottom: 40px;
+    margin-bottom: 45px;
 }
 
-/* ÜRÜNLER YAN YANA */
+/* ÜRÜNLERİ YAN YANA DİZEN ANA ALAN */
 .products-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     gap: 25px;
     width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .product {
-    background: linear-gradient(145deg, #171020, #0e0a14);
+    position: relative;
+    min-width: 0;
+    background: linear-gradient(145deg, #191022, #0e0915);
     border: 1px solid #39204f;
     border-radius: 15px;
-    padding: 28px 22px;
+    padding: 30px 22px;
     text-align: center;
     transition: .3s;
 }
@@ -107,53 +125,63 @@ nav a:hover {
 .product:hover {
     transform: translateY(-7px);
     border-color: #a855f7;
-    box-shadow: 0 0 25px #9333ea33;
+    box-shadow: 0 0 25px #9333ea44;
+}
+
+.product-number {
+    color: #75449a;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    margin-bottom: 18px;
 }
 
 .product h3 {
+    color: #e9d5ff;
     font-family: 'Orbitron', sans-serif;
-    font-size: 19px;
-    color: #d8b4fe;
+    font-size: 18px;
     margin-bottom: 15px;
 }
 
 .product p {
-    color: #b9a8c9;
-    margin-bottom: 20px;
+    color: #a99ab7;
+    font-size: 13px;
+    margin-bottom: 22px;
 }
 
 .price {
-    font-size: 25px;
-    font-weight: 800;
     color: #c084fc;
-    margin-bottom: 20px;
+    font-size: 27px;
+    font-weight: 800;
+    margin-bottom: 22px;
 }
 
-.product button {
+.product button,
+.application button {
     width: 100%;
     padding: 13px;
     background: linear-gradient(90deg, #7e22ce, #a855f7);
+    color: white;
     border: none;
     border-radius: 8px;
-    color: white;
-    font-weight: 700;
+    font-weight: 800;
     cursor: pointer;
     transition: .3s;
 }
 
-.product button:hover {
+.product button:hover,
+.application button:hover {
     filter: brightness(1.2);
 }
 
 .application {
-    padding: 65px 20px;
-    text-align: center;
+    padding: 70px 20px;
     background: #100a18;
+    text-align: center;
 }
 
 .application h2 {
-    color: #c084fc;
     font-family: 'Orbitron', sans-serif;
+    color: #c084fc;
     margin-bottom: 20px;
 }
 
@@ -162,17 +190,22 @@ nav a:hover {
     margin-bottom: 25px;
 }
 
+.application button {
+    width: auto;
+    padding: 14px 30px;
+}
+
 footer {
     padding: 25px;
     text-align: center;
     color: #887994;
-    border-top: 1px solid #241332;
+    border-top: 1px solid #2b1740;
 }
 
 /* TABLET */
 @media (max-width: 900px) {
     .products-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     }
 }
 
@@ -180,14 +213,20 @@ footer {
 @media (max-width: 550px) {
     header {
         flex-direction: column;
-        gap: 18px;
+        gap: 20px;
+    }
+
+    nav {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     nav a {
-        margin: 0 8px;
+        font-size: 12px;
     }
 
     .products-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
     }
 }
