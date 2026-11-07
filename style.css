@@ -102,12 +102,11 @@ nav a:hover {
     margin-bottom: 40px;
 }
 
-/* BEŞ ÜRÜN TEK SIRADA */
-
+/* ÜRÜNLER */
 .products-grid {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     justify-content: space-between;
     align-items: stretch;
     gap: 15px;
@@ -189,50 +188,7 @@ nav a:hover {
     filter: brightness(1.2);
 }
 
-.application {
-    padding: 70px 20px;
-    background: #100a18;
-    text-align: center;
-}
-
-.application h2 {
-    font-family: 'Orbitron', sans-serif;
-    color: #c084fc;
-    margin-bottom: 20px;
-}
-
-.application p {
-    color: #b9a8c9;
-    margin-bottom: 25px;
-}
-
-.application button {
-    padding: 14px 30px;
-    background: linear-gradient(90deg, #7e22ce, #a855f7);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 800;
-    cursor: pointer;
-}
-
-footer {
-    padding: 25px;
-    text-align: center;
-    color: #887994;
-    border-top: 1px solid #2b1740;
-}
-
-/* DAR EKRANLARDA DA TEK SIRA */
-@media (max-width: 900px) {
-    .products {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-
-    .product {
-        flex-basis: 190px;
-        
+/* MÜŞTERİ DESTEĞİ */
 .support-section {
     padding: 35px 7% 65px;
     display: flex;
@@ -280,13 +236,60 @@ footer {
 }
 
 .support-card a {
+    position: relative;
+    top: -25px;
     background: linear-gradient(90deg, #7e22ce, #a855f7);
     color: white;
     text-decoration: none;
     padding: 13px 28px;
     border-radius: 8px;
     font-weight: 800;
-} 
+}
+
+/* ADMIN BAŞVURUSU */
+.application {
+    padding: 70px 20px;
+    background: #100a18;
+    text-align: center;
+}
+
+.application h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #c084fc;
+    margin-bottom: 20px;
+}
+
+.application p {
+    color: #b9a8c9;
+    margin-bottom: 25px;
+}
+
+.application button {
+    padding: 14px 30px;
+    background: linear-gradient(90deg, #7e22ce, #a855f7);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+footer {
+    padding: 25px;
+    text-align: center;
+    color: #887994;
+    border-top: 1px solid #2b1740;
+}
+
+/* DAR EKRANLAR */
+@media (max-width: 900px) {
+    .products {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .product {
+        flex-basis: 190px;
     }
 }
 
@@ -305,12 +308,4 @@ footer {
     nav a {
         font-size: 12px;
     }
-}
-.support-card a {
-    transform: translateY(-25px);
-}
-.support-card a {
-    position: relative !important;
-    top: -25px !important;
-    transform: none !important;
 }
