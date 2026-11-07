@@ -1,5 +1,16 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@500;600;700;800&display=swap');
+
+:root {
+    --bg: #08060d;
+    --panel: #100b19;
+    --panel2: #171022;
+    --purple: #a855f7;
+    --purple-light: #d8b4fe;
+    --border: #38204d;
+    --text: #ffffff;
+    --muted: #a99ab7;
+}
 
 * {
     margin: 0;
@@ -12,308 +23,359 @@ html {
 }
 
 body {
-    background: #08060d;
-    color: white;
+    background:
+        radial-gradient(ellipse at 50% -20%, #581c8733, transparent 55%),
+        var(--bg);
+    color: var(--text);
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
 }
 
+button, input, textarea {
+    font-family: inherit;
+}
+
 header {
     min-height: 85px;
-    padding: 20px 5%;
+    padding: 20px 6%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #2b1740;
+    background: #090610ef;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(16px);
 }
 
 .logo {
     font-family: 'Orbitron', sans-serif;
-    color: #c084fc;
+    color: var(--purple-light);
     font-size: 25px;
-    font-weight: 800;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px #a855f766;
 }
 
 nav {
     display: flex;
-    gap: 25px;
+    align-items: center;
+    gap: 28px;
 }
 
 nav a {
-    color: #ddd;
+    color: #c9bdd4;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: .25s;
 }
 
 nav a:hover {
-    color: #c084fc;
+    color: var(--purple-light);
+    text-shadow: 0 0 12px var(--purple);
 }
 
 .hero {
-    min-height: 380px;
+    min-height: 440px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 60px 20px;
-    background: radial-gradient(ellipse at center, #54118a55, transparent 70%);
+    padding: 80px 20px;
+    background:
+        radial-gradient(ellipse at center, #7e22ce35, transparent 65%);
 }
 
 .hero-tag {
-    display: block;
-    color: #c084fc;
-    letter-spacing: 4px;
-    font-size: 12px;
-    margin-bottom: 20px;
+    display: inline-block;
+    color: var(--purple-light);
+    letter-spacing: 5px;
+    font-size: 11px;
+    font-weight: 800;
+    margin-bottom: 22px;
+    padding: 9px 17px;
+    border: 1px solid #9333ea66;
+    border-radius: 30px;
+    background: #9333ea12;
 }
 
 .hero h1 {
     font-family: 'Orbitron', sans-serif;
-    font-size: clamp(30px, 5vw, 55px);
-    color: #e9d5ff;
-    margin-bottom: 20px;
+    font-size: clamp(32px, 5vw, 62px);
+    color: #f3e8ff;
+    margin-bottom: 22px;
+    text-shadow: 0 0 35px #a855f744;
 }
 
 .hero p {
     color: #b9a8c9;
-    margin-bottom: 30px;
+    line-height: 1.8;
+    margin-bottom: 32px;
 }
 
 .hero-button {
     display: inline-block;
-    padding: 14px 28px;
-    background: linear-gradient(90deg, #7e22ce, #a855f7);
+    padding: 15px 32px;
+    background: linear-gradient(110deg, #7e22ce, #a855f7);
     color: white;
     text-decoration: none;
-    border-radius: 8px;
-    font-weight: 700;
+    border-radius: 10px;
+    font-weight: 800;
+    box-shadow: 0 8px 30px #9333ea44;
+    transition: .25s;
+}
+
+.hero-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px #9333ea77;
 }
 
 .products {
     width: 100%;
-    padding: 65px 3%;
+    padding: 75px 4%;
 }
 
 .section-title {
     text-align: center;
     font-family: 'Orbitron', sans-serif;
-    font-size: 30px;
-    color: #c084fc;
-    margin-bottom: 40px;
+    font-size: clamp(23px, 3vw, 34px);
+    color: var(--purple-light);
+    margin-bottom: 45px;
+    text-shadow: 0 0 20px #9333ea44;
 }
 
 .products-grid {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: stretch;
-    gap: 15px;
+    gap: 22px;
     width: 100%;
-    overflow-x: auto;
-    padding: 8px 4px 18px;
+    padding: 10px 4px 25px;
 }
 
 .product {
-    flex: 1 0 calc(20% - 12px);
+    flex: 1 1 190px;
+    max-width: 260px;
     min-width: 170px;
-    aspect-ratio: 1 / 1;
+    min-height: 260px;
     position: relative;
-    background: linear-gradient(145deg, #191022, #0e0915);
-    border: 1px solid #492765;
-    border-radius: 18px;
-    padding: 18px 12px;
+    background: linear-gradient(145deg, #1b1127, #0d0913);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 25px 17px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    transition: .3s ease;
+    overflow: hidden;
+}
+
+.product::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top, #a855f722, transparent 65%);
+    opacity: 0;
     transition: .3s;
+    pointer-events: none;
 }
 
 .product:hover {
-    transform: translateY(-6px);
-    border-color: #c084fc;
-    box-shadow: 0 0 25px #9333ea44;
+    transform: translateY(-8px);
+    border-color: var(--purple);
+    box-shadow: 0 12px 35px #9333ea30;
+}
+
+.product:hover::before {
+    opacity: 1;
 }
 
 .product-number {
     position: absolute;
-    top: 12px;
-    left: 14px;
-    color: #75449a;
+    top: 15px;
+    left: 16px;
+    color: #a879c5;
     font-family: 'Orbitron', sans-serif;
     font-size: 11px;
 }
 
 .product-icon {
-    font-size: 32px;
-    margin-bottom: 12px;
+    font-size: 38px;
+    margin-bottom: 18px;
 }
 
 .product h3 {
-    color: #e9d5ff;
+    color: #ead8ff;
     font-family: 'Orbitron', sans-serif;
-    font-size: clamp(11px, 1.2vw, 16px);
+    font-size: 14px;
     margin-bottom: 12px;
 }
 
 .product p {
-    color: #a99ab7;
-    font-size: 11px;
-    margin-bottom: 14px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 16px;
 }
 
 .price {
-    color: #c084fc;
-    font-size: 22px;
-    font-weight: 800;
-    margin-bottom: 15px;
+    color: var(--purple-light);
+    font-size: 25px;
+    font-weight: 900;
+    margin-bottom: 18px;
 }
 
-.product button {
+.product button,
+.application button,
+.store-form button {
     width: 100%;
-    padding: 11px 5px;
-    background: linear-gradient(90deg, #7e22ce, #a855f7);
+    padding: 13px 18px;
+    background: linear-gradient(110deg, #7e22ce, #a855f7);
     color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 11px;
+    border-radius: 9px;
+    font-size: 12px;
     font-weight: 800;
     cursor: pointer;
+    transition: .25s;
 }
 
-.product button:hover {
+.product button:hover,
+.application button:hover,
+.store-form button:hover {
     filter: brightness(1.2);
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px #9333ea44;
 }
 
-/* MÜŞTERİ DESTEĞİ */
+/* DESTEK */
 .support-section {
-    padding: 35px 7% 65px;
+    padding: 45px 20px 75px;
     display: flex;
     justify-content: center;
 }
 
 .support-card {
     width: 100%;
-    max-width: 340px;
-    aspect-ratio: 1 / 1;
-    background: linear-gradient(145deg, #191022, #0e0915);
+    max-width: 380px;
+    min-height: 340px;
+    background: linear-gradient(145deg, #1b1127, #0d0913);
     border: 1px solid #9333ea;
-    border-radius: 20px;
-    box-shadow: 0 0 25px #9333ea22;
+    border-radius: 22px;
+    box-shadow: 0 0 35px #9333ea20;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 25px;
+    padding: 30px;
     transition: .3s;
 }
 
 .support-card:hover {
     transform: translateY(-7px);
-    box-shadow: 0 0 30px #9333ea66;
+    box-shadow: 0 0 40px #9333ea44;
 }
 
 .support-icon {
-    font-size: 48px;
-    margin-bottom: 20px;
+    font-size: 52px;
+    margin-bottom: 22px;
 }
 
 .support-card h3 {
     font-family: 'Orbitron', sans-serif;
-    color: #d8b4fe;
+    color: var(--purple-light);
     margin-bottom: 15px;
 }
 
 .support-card p {
-    color: #b9a8c9;
+    color: var(--muted);
     font-size: 13px;
-    line-height: 1.6;
-    margin-bottom: 22px;
+    line-height: 1.8;
+    margin-bottom: 25px;
 }
 
 .support-card a {
-    position: relative;
-    top: -25px;
-    background: linear-gradient(90deg, #7e22ce, #a855f7);
+    background: linear-gradient(110deg, #7e22ce, #a855f7);
     color: white;
     text-decoration: none;
-    padding: 13px 28px;
-    border-radius: 8px;
+    padding: 14px 30px;
+    border-radius: 9px;
     font-weight: 800;
+    transition: .25s;
 }
 
-/* FORM ALANLARI */
+.support-card a:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.2);
+}
+
+/* BAŞVURU */
 .application {
-    padding: 70px 20px;
-    background: #100a18;
+    padding: 75px 20px;
+    background: linear-gradient(180deg, #100a18, #0b0710);
     text-align: center;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
 }
 
 .application h2 {
     font-family: 'Orbitron', sans-serif;
-    color: #c084fc;
+    color: var(--purple-light);
     margin-bottom: 20px;
 }
 
 .application p {
-    color: #b9a8c9;
+    color: var(--muted);
     margin-bottom: 25px;
+    line-height: 1.7;
 }
 
-.application button,
-.store-form button {
-    padding: 14px 30px;
-    background: linear-gradient(90deg, #7e22ce, #a855f7);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 800;
-    cursor: pointer;
-    transition: .2s;
-}
-
-.application button:hover,
-.store-form button:hover {
-    filter: brightness(1.2);
-    transform: translateY(-2px);
+.application button {
+    width: auto;
+    min-width: 180px;
 }
 
 .store-form {
     width: 100%;
-    max-width: 450px;
-    margin: 25px auto 0;
-    padding: 25px;
-    background: linear-gradient(145deg, #191022, #0e0915);
-    border: 1px solid #492765;
-    border-radius: 16px;
+    max-width: 470px;
+    margin: 28px auto 0;
+    padding: 28px;
+    background: linear-gradient(145deg, #1b1127, #0e0915);
+    border: 1px solid var(--border);
+    border-radius: 18px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 16px;
+    box-shadow: 0 15px 40px #00000044;
 }
 
 .store-form input,
 .store-form textarea {
     width: 100%;
     padding: 15px;
-    background: #08060d;
-    border: 1px solid #492765;
-    border-radius: 8px;
+    background: #090610;
+    border: 1px solid #39234c;
+    border-radius: 9px;
     color: white;
-    font-family: 'Inter', sans-serif;
+    font-size: 13px;
     outline: none;
+    transition: .2s;
 }
 
 .store-form input:focus,
 .store-form textarea:focus {
-    border-color: #c084fc;
-    box-shadow: 0 0 10px #9333ea33;
+    border-color: var(--purple);
+    box-shadow: 0 0 12px #9333ea33;
 }
 
 .store-form textarea {
-    min-height: 100px;
+    min-height: 110px;
     resize: vertical;
 }
 
@@ -323,8 +385,8 @@ nav a:hover {
 }
 
 .store-form p {
-    color: #d8b4fe;
-    line-height: 1.6;
+    color: var(--purple-light);
+    line-height: 1.7;
     overflow-wrap: anywhere;
 }
 
@@ -348,21 +410,22 @@ nav a:hover {
 }
 
 footer {
-    padding: 25px;
+    padding: 30px 20px;
     text-align: center;
     color: #887994;
-    border-top: 1px solid #2b1740;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
 }
 
-/* DAR EKRANLAR */
+/* MOBİL */
 @media (max-width: 900px) {
     .products {
-        padding-left: 15px;
-        padding-right: 15px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     .product {
-        flex-basis: 190px;
+        flex-basis: 210px;
     }
 }
 
@@ -370,10 +433,11 @@ footer {
     header {
         flex-direction: column;
         gap: 20px;
+        padding: 20px;
     }
 
     nav {
-        gap: 12px;
+        gap: 16px;
         flex-wrap: wrap;
         justify-content: center;
     }
@@ -382,11 +446,39 @@ footer {
         font-size: 12px;
     }
 
+    .hero {
+        min-height: 350px;
+        padding: 55px 18px;
+    }
+
+    .products {
+        padding: 50px 14px;
+    }
+
+    .products-grid {
+        gap: 13px;
+    }
+
+    .product {
+        flex: 1 1 145px;
+        min-width: 140px;
+        min-height: 235px;
+        padding: 20px 12px;
+    }
+
+    .product h3 {
+        font-size: 12px;
+    }
+
+    .price {
+        font-size: 21px;
+    }
+
     .application {
-        padding: 45px 15px;
+        padding: 50px 15px;
     }
 
     .store-form {
-        padding: 18px;
+        padding: 20px;
     }
 }
