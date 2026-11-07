@@ -3,7 +3,7 @@ const API_URL = "https://jesus-store.onrender.com";
 
 let selectedProduct = null;
 let adminUser = null;
-
+let allOrders = [];
 function escapeHTML(value) {
     return String(value ?? "").replace(/[&<>"']/g, char => ({
         "&": "&amp;",
