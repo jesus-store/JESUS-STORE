@@ -4,6 +4,17 @@ const API_URL = "https://jesus-store.onrender.com";
 let selectedProduct = null;
 let adminUser = null;
 
+// GÜVENLİ METİN
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+    })[char]);
+}
+
 // ÜRÜN SEÇME
 function order(product, price) {
     selectedProduct = { product, price };
@@ -12,7 +23,7 @@ function order(product, price) {
     const selected = document.getElementById("selectedProduct");
 
     if (selected) {
-        selected.value = `${product} - ${price} TL`;
+        selected.textContent = `${product} - ${price} TL`;
     }
 
     if (form) {
@@ -33,7 +44,7 @@ async function siparisGonder() {
     const message = document.getElementById("orderMessage");
 
     if (!customer || !discord) {
-        alert("Adını ve Discord kullanıcı adı / ID bilgini gir.");
+        if (message) message.textContent = "Adını ve Discord bilgini gir.";
         return;
     }
 
@@ -61,18 +72,16 @@ async function siparisGonder() {
             message.textContent = `Siparişin alındı! Takip kodun: ${data.trackingCode}`;
         }
 
-        alert(
-            "Siparişin başarıyla oluşturuldu!\n\nTakip kodun: " +
-            data.trackingCode
-        );
-
         const trackingInput = document.getElementById("trackingCode");
         if (trackingInput) trackingInput.value = data.trackingCode;
+
+        alert("Sipariş oluşturuldu!\nTakip kodun: " + data.trackingCode);
+
+        selectedProduct = null;
 
     } catch (error) {
         console.error(error);
         if (message) message.textContent = error.message;
-        else alert(error.message);
     }
 }
 
@@ -117,12 +126,11 @@ async function siparisTakipEt() {
             `Durum: ${data.order.status}`;
 
     } catch (error) {
-        console.error(error);
         result.textContent = "Sunucuya bağlanılamadı.";
     }
 }
 
-// ADMİN BAŞVURUSU
+// BAŞVURU GÖNDERME
 async function applicationSubmit() {
     const name = document.getElementById("appName")?.value.trim();
     const discord = document.getElementById("appDiscord")?.value.trim();
@@ -151,12 +159,11 @@ async function applicationSubmit() {
         alert("Başvurun başarıyla gönderildi!");
 
     } catch (error) {
-        console.error(error);
-        alert(error.message || "Sunucuya bağlanılamadı.");
+        alert(error.message);
     }
 }
 
-// BAŞVURU FORMUNU AÇ / KAPAT
+// BAŞVURU FORMU
 function openApplication() {
     const form = document.getElementById("applicationForm");
     if (form) form.hidden = !form.hidden;
@@ -191,80 +198,12 @@ async function adminLogin() {
         sessionStorage.setItem("jesusAdminToken", data.token);
 
         if (message) message.textContent = "Giriş başarılı!";
+
         await adminPaneliAc();
 
     } catch (error) {
-        console.error(error);
         if (message) message.textContent = error.message;
     }
-}
-
-// ADMİN PANELİNİ AÇ
-async function adminPaneliAc() {
-    const token = sessionStorage.getItem("jesusAdminToken");
-
-    if (!token) return;
-
-    try {
-        const response = await fetch(`${API_URL}/admin/me`, {
-            headers: { Authorization: `Bearer ${token}` }
-        });
-
-        const data = await response.json();
-
-        if (!response.ok || !data.success) {
-            sessionStorage.removeItem("jesusAdminToken");
-            alert("Oturumun sona ermiş. Yeniden giriş yap.");
-            return;
-        }
-
-        adminUser = {
-    username: data.username,
-    role: data.role
-};
-
-        let panel = document.getElementById("jesusAdminPanel");
-
-        if (!panel) {
-            panel = document.createElement("section");
-            panel.id = "jesusAdminPanel";
-            panel.style.cssText =
-                "background:#171020;color:white;padding:25px;margin:30px auto;" +
-                "max-width:1100px;border:1px solid #873cff;border-radius:15px;";
-            document.body.appendChild(panel);
-        }
-
-        panel.innerHTML = `
-            <h2>JESUS STORE - YÖNETİM PANELİ</h2>
-            <p>Hoş geldin, ${escapeHTML(adminUser.username || "Yönetici")}</p>
-            <button onclick="siparisleriYukle()">Siparişleri Yenile</button>
-            <button onclick="adminCikis()">Çıkış Yap</button>
-            <div id="adminOrders" style="margin-top:20px;">Siparişler yükleniyor...</div>
-            <div id="staffArea" style="margin-top:30px;"></div>
-        `;
-
-        panel.scrollIntoView({ behavior: "smooth" });
-        await siparisleriYukle();
-
-        if (adminUser.role === "owner" || adminUser.isOwner === true) {
-            await ekipPaneliniYukle();
-        }
-
-    } catch (error) {
-        console.error(error);
-        alert("Admin paneli açılırken hata oluştu.");
-    }
-}
-
-// HTML GÜVENLİ METİN
-function escapeHTML(value) {
-    return String(value ?? "").replace(/[&<>"']/g, char => ({
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#039;"
-    })[char]);
 }
 
 // ADMİN İSTEKLERİ
@@ -289,45 +228,204 @@ async function adminFetch(path, options = {}) {
     return data;
 }
 
-// SİPARİŞLERİ LİSTELE
+// ADMİN PANELİNİ AÇ
+async function adminPaneliAc() {
+    const token = sessionStorage.getItem("jesusAdminToken");
+    if (!token) return;
+
+    try {
+        const response = await fetch(`${API_URL}/admin/me`, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+            sessionStorage.removeItem("jesusAdminToken");
+            alert("Oturumun sona ermiş. Yeniden giriş yap.");
+            return;
+        }
+
+        adminUser = {
+            username: data.username,
+            role: data.role
+        };
+
+        let panel = document.getElementById("jesusAdminPanel");
+
+        if (!panel) {
+            panel = document.createElement("section");
+            panel.id = "jesusAdminPanel";
+            document.body.appendChild(panel);
+        }
+
+        panel.innerHTML = `
+            <div class="admin-container">
+
+                <div class="admin-header">
+                    <div>
+                        <span class="admin-eyebrow">JESUS STORE MANAGEMENT</span>
+                        <h2>Yönetim Paneli</h2>
+                        <p>Hoş geldin, ${escapeHTML(adminUser.username)}</p>
+                    </div>
+
+                    <div class="admin-header-actions">
+                        <span class="admin-role">
+                            ${adminUser.role === "owner" ? "MAĞAZA SAHİBİ" : "EKİP ÜYESİ"}
+                        </span>
+                        <button class="admin-logout" onclick="adminCikis()">ÇIKIŞ YAP</button>
+                    </div>
+                </div>
+
+                <div class="admin-stats">
+                    <div class="admin-stat">
+                        <span>TOPLAM SİPARİŞ</span>
+                        <strong id="statTotal">0</strong>
+                    </div>
+
+                    <div class="admin-stat">
+                        <span>BEKLEYEN</span>
+                        <strong id="statPending">0</strong>
+                    </div>
+
+                    <div class="admin-stat">
+                        <span>İŞLEMDE</span>
+                        <strong id="statProcessing">0</strong>
+                    </div>
+
+                    <div class="admin-stat">
+                        <span>TAMAMLANAN</span>
+                        <strong id="statCompleted">0</strong>
+                    </div>
+                </div>
+
+                <div class="admin-section">
+                    <div class="admin-section-heading">
+                        <div>
+                            <span class="admin-eyebrow">ORDER MANAGEMENT</span>
+                            <h3>Sipariş Yönetimi</h3>
+                        </div>
+                        <button class="admin-refresh" onclick="siparisleriYukle()">
+                            ↻ YENİLE
+                        </button>
+                    </div>
+
+                    <div id="adminOrders">Siparişler yükleniyor...</div>
+                </div>
+
+                ${adminUser.role === "owner" ? `
+                    <div class="admin-section" id="staffSection">
+                        <div class="admin-section-heading">
+                            <div>
+                                <span class="admin-eyebrow">TEAM MANAGEMENT</span>
+                                <h3>Ekip Yönetimi</h3>
+                            </div>
+                        </div>
+                        <div id="staffArea">Ekip yükleniyor...</div>
+                    </div>
+                ` : ""}
+
+            </div>
+        `;
+
+        panel.scrollIntoView({ behavior: "smooth" });
+
+        await siparisleriYukle();
+
+        if (adminUser.role === "owner") {
+            await ekipPaneliniYukle();
+        }
+
+    } catch (error) {
+        console.error(error);
+        alert("Admin paneli açılırken hata oluştu: " + error.message);
+    }
+}
+
+// SİPARİŞLERİ YÜKLE
 async function siparisleriYukle() {
     const area = document.getElementById("adminOrders");
     if (!area) return;
 
-    area.textContent = "Siparişler yükleniyor...";
+    area.innerHTML = "Siparişler yükleniyor...";
 
     try {
         const data = await adminFetch("/admin/orders");
         const orders = data.orders || [];
 
+        document.getElementById("statTotal").textContent = orders.length;
+        document.getElementById("statPending").textContent =
+            orders.filter(o => o.status === "Beklemede").length;
+        document.getElementById("statProcessing").textContent =
+            orders.filter(o => o.status === "İşlemde").length;
+        document.getElementById("statCompleted").textContent =
+            orders.filter(o => o.status === "Tamamlandı").length;
+
         if (!orders.length) {
-            area.textContent = "Henüz sipariş bulunmuyor.";
+            area.innerHTML = `
+                <div class="admin-empty">
+                    Henüz sipariş bulunmuyor.
+                </div>
+            `;
             return;
         }
 
-        area.innerHTML = orders.map(item => `
-            <div style="background:#241832;padding:15px;margin:12px 0;border-radius:10px;">
-                <b>${escapeHTML(item.product)}</b> - ${escapeHTML(item.price)} TL
-                <p>Müşteri: ${escapeHTML(item.customer)}</p>
-                <p>Discord: ${escapeHTML(item.discord)}</p>
-                <p>Takip kodu: ${escapeHTML(item.tracking_code)}</p>
-                <p>Durum: ${escapeHTML(item.status)}</p>
-                <select id="status-${Number(item.id)}">
-                    <option ${item.status === "Beklemede" ? "selected" : ""}>Beklemede</option>
-                    <option ${item.status === "İşlemde" ? "selected" : ""}>İşlemde</option>
-                    <option ${item.status === "Tamamlandı" ? "selected" : ""}>Tamamlandı</option>
-                </select>
-                <button onclick="siparisDurumuDegistir(${Number(item.id)})">Durumu Kaydet</button>
-                ${adminUser?.role === "owner" || adminUser?.isOwner === true
-                    ? `<button onclick="siparisSil(${Number(item.id)})">Siparişi Sil</button>`
-                    : ""}
-                <button onclick="siparisLoglariniGoster(${Number(item.id)})">İşlem Geçmişi</button>
-                <div id="logs-${Number(item.id)}"></div>
-            </div>
-        `).join("");
+        area.innerHTML = orders.map(item => {
+            const id = Number(item.id);
+
+            let statusClass = "pending";
+            if (item.status === "İşlemde") statusClass = "processing";
+            if (item.status === "Tamamlandı") statusClass = "completed";
+
+            return `
+                <div class="admin-order-card">
+
+                    <div class="admin-order-top">
+                        <div>
+                            <span class="admin-order-id">SİPARİŞ #${id}</span>
+                            <h4>${escapeHTML(item.product)}</h4>
+                        </div>
+                        <span class="admin-status ${statusClass}">
+                            ${escapeHTML(item.status)}
+                        </span>
+                    </div>
+
+                    <div class="admin-order-info">
+                        <p><span>Müşteri</span>${escapeHTML(item.customer)}</p>
+                        <p><span>Discord</span>${escapeHTML(item.discord)}</p>
+                        <p><span>Takip Kodu</span>${escapeHTML(item.tracking_code)}</p>
+                        <p><span>Fiyat</span>${escapeHTML(item.price)} TL</p>
+                    </div>
+
+                    <div class="admin-order-actions">
+                        <select id="status-${id}">
+                            <option value="Beklemede" ${item.status === "Beklemede" ? "selected" : ""}>Beklemede</option>
+                            <option value="İşlemde" ${item.status === "İşlemde" ? "selected" : ""}>İşlemde</option>
+                            <option value="Tamamlandı" ${item.status === "Tamamlandı" ? "selected" : ""}>Tamamlandı</option>
+                        </select>
+
+                        <button onclick="siparisDurumuDegistir(${id})">
+                            DURUMU KAYDET
+                        </button>
+
+                        <button class="admin-history-button" onclick="siparisLoglariniGoster(${id})">
+                            İŞLEM GEÇMİŞİ
+                        </button>
+
+                        ${adminUser.role === "owner" ? `
+                            <button class="admin-delete-button" onclick="siparisSil(${id})">
+                                SİPARİŞİ SİL
+                            </button>
+                        ` : ""}
+                    </div>
+
+                    <div class="admin-logs" id="logs-${id}"></div>
+
+                </div>
+            `;
+        }).join("");
 
     } catch (error) {
-        console.error(error);
         area.textContent = error.message;
     }
 }
@@ -353,15 +451,18 @@ async function siparisDurumuDegistir(id) {
 
 // SİPARİŞ SİL
 async function siparisSil(id) {
-    if (adminUser?.role !== "owner" && adminUser?.isOwner !== true) {
-        alert("Bu işlem yalnızca mağaza sahibine açık.");
+    if (adminUser?.role !== "owner") {
+        alert("Bu işlem yalnızca mağaza sahiplerine açık.");
         return;
     }
 
     if (!confirm("Bu siparişi silmek istediğine emin misin?")) return;
 
     try {
-        await adminFetch(`/admin/orders/${id}`, { method: "DELETE" });
+        await adminFetch(`/admin/orders/${id}`, {
+            method: "DELETE"
+        });
+
         alert("Sipariş silindi.");
         await siparisleriYukle();
 
@@ -370,20 +471,37 @@ async function siparisSil(id) {
     }
 }
 
-// SİPARİŞ İŞLEM GEÇMİŞİ
+// İŞLEM GEÇMİŞİ
 async function siparisLoglariniGoster(id) {
     const area = document.getElementById(`logs-${id}`);
     if (!area) return;
+
+    if (area.dataset.loaded === "true") {
+        area.innerHTML = "";
+        area.dataset.loaded = "false";
+        return;
+    }
+
+    area.textContent = "Geçmiş yükleniyor...";
 
     try {
         const data = await adminFetch(`/admin/orders/${id}/logs`);
         const logs = data.logs || [];
 
-        area.innerHTML = logs.length
-            ? logs.map(log =>
-                `<p>${escapeHTML(log.username)}: ${escapeHTML(log.old_status)} → ${escapeHTML(log.new_status)}</p>`
-              ).join("")
-            : "<p>İşlem geçmişi bulunamadı.</p>";
+        if (!logs.length) {
+            area.textContent = "Bu sipariş için işlem geçmişi bulunmuyor.";
+            return;
+        }
+
+        area.innerHTML = logs.map(log => `
+            <div class="admin-log-item">
+                <strong>${escapeHTML(log.username)}</strong>
+                <span>${escapeHTML(log.old_status)} → ${escapeHTML(log.new_status)}</span>
+                <small>${log.changed_at ? new Date(log.changed_at).toLocaleString("tr-TR") : ""}</small>
+            </div>
+        `).join("");
+
+        area.dataset.loaded = "true";
 
     } catch (error) {
         area.textContent = error.message;
@@ -393,25 +511,40 @@ async function siparisLoglariniGoster(id) {
 // EKİP YÖNETİMİ
 async function ekipPaneliniYukle() {
     const area = document.getElementById("staffArea");
-    if (!area) return;
+    if (!area || adminUser?.role !== "owner") return;
 
     try {
         const data = await adminFetch("/admin/staff");
         const staff = data.staff || [];
 
         area.innerHTML = `
-            <h3>Ekip Yönetimi</h3>
-            <p>En fazla 5 ekip hesabı oluşturabilirsin.</p>
-            <input id="newStaffUsername" placeholder="Yeni ekip kullanıcı adı">
-            <input id="newStaffPassword" type="password" placeholder="Yeni ekip şifresi">
-            <button onclick="ekipUyesiEkle()">Ekip Üyesi Ekle</button>
-            <div>
-                ${staff.map(person => `
-                    <p>
-                        ${escapeHTML(person.username)}
-                        <button onclick="ekipUyesiSil(${Number(person.id)})">Hesabı Sil</button>
-                    </p>
-                `).join("")}
+            <div class="staff-create-box">
+                <h4>Yeni Ekip Hesabı Oluştur</h4>
+                <p>İstediğin kadar ekip hesabı ekleyebilirsin.</p>
+
+                <div class="staff-create-inputs">
+                    <input id="newStaffUsername" placeholder="Kullanıcı adı">
+                    <input id="newStaffPassword" type="password" placeholder="Şifre (en az 8 karakter)">
+                    <button onclick="ekipUyesiEkle()">HESAP OLUŞTUR</button>
+                </div>
+            </div>
+
+            <div class="staff-list">
+                <h4>Mevcut Ekip Üyeleri (${staff.length})</h4>
+
+                ${staff.length ? staff.map(person => `
+                    <div class="staff-item">
+                        <div>
+                            <strong>${escapeHTML(person.username)}</strong>
+                            <small>Ekip hesabı</small>
+                        </div>
+                        <button onclick="ekipUyesiSil(${Number(person.id)})">
+                            HESABI SİL
+                        </button>
+                    </div>
+                `).join("") : `
+                    <div class="admin-empty">Henüz ekip hesabı bulunmuyor.</div>
+                `}
             </div>
         `;
 
@@ -420,12 +553,18 @@ async function ekipPaneliniYukle() {
     }
 }
 
+// EKİP HESABI EKLE
 async function ekipUyesiEkle() {
     const username = document.getElementById("newStaffUsername")?.value.trim();
     const password = document.getElementById("newStaffPassword")?.value;
 
     if (!username || !password) {
         alert("Kullanıcı adı ve şifre gir.");
+        return;
+    }
+
+    if (password.length < 8) {
+        alert("Şifre en az 8 karakter olmalı.");
         return;
     }
 
@@ -443,11 +582,17 @@ async function ekipUyesiEkle() {
     }
 }
 
+// EKİP HESABI SİL
 async function ekipUyesiSil(id) {
+    if (adminUser?.role !== "owner") return;
+
     if (!confirm("Bu ekip hesabını silmek istiyor musun?")) return;
 
     try {
-        await adminFetch(`/admin/staff/${id}`, { method: "DELETE" });
+        await adminFetch(`/admin/staff/${id}`, {
+            method: "DELETE"
+        });
+
         alert("Ekip hesabı silindi.");
         await ekipPaneliniYukle();
 
@@ -464,5 +609,15 @@ function adminCikis() {
     const panel = document.getElementById("jesusAdminPanel");
     if (panel) panel.remove();
 
+    const message = document.getElementById("adminMessage");
+    if (message) message.textContent = "";
+
     alert("Admin oturumu kapatıldı.");
 }
+
+// SAYFA YENİLENDİĞİNDE OTURUMU KONTROL ET
+document.addEventListener("DOMContentLoaded", () => {
+    if (sessionStorage.getItem("jesusAdminToken")) {
+        adminPaneliAc();
+    }
+});
