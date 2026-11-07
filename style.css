@@ -535,3 +535,135 @@ input::placeholder, textarea::placeholder {
         scroll-behavior: auto !important;
     }
 }
+/* ===== JESUS STORE LIVE EFFECTS ===== */
+
+body {
+    overflow-x: hidden;
+    background:
+        radial-gradient(ellipse at 15% 20%, rgba(130, 45, 255, .13), transparent 35%),
+        radial-gradient(ellipse at 85% 65%, rgba(75, 25, 160, .12), transparent 35%),
+        #08060d;
+}
+
+/* Arka plan ışıkları */
+body::before {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    z-index: -1;
+    pointer-events: none;
+    background: conic-gradient(
+        from 0deg,
+        transparent,
+        rgba(132, 55, 255, .09),
+        transparent,
+        rgba(90, 35, 180, .08),
+        transparent
+    );
+    animation: jesusBackground 22s linear infinite;
+}
+
+@keyframes jesusBackground {
+    to { transform: rotate(360deg); }
+}
+
+/* Başlık parlaması */
+h1, .section-title {
+    text-shadow: 0 0 25px rgba(155, 80, 255, .35);
+}
+
+/* Ürün kartları */
+.product-card {
+    position: relative;
+    overflow: hidden;
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+
+.product-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 25%,
+        rgba(165, 100, 255, .12),
+        transparent 75%
+    );
+    transform: translateX(-120%);
+    transition: transform .6s ease;
+    pointer-events: none;
+}
+
+.product-card:hover {
+    transform: translateY(-9px) scale(1.02);
+    border-color: rgba(174, 112, 255, .8);
+    box-shadow: 0 12px 40px rgba(120, 45, 255, .2);
+}
+
+.product-card:hover::before {
+    transform: translateX(120%);
+}
+
+/* Ekip kartları */
+.team-card {
+    transition: .3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 0 30px rgba(140, 65, 255, .22);
+}
+
+/* JP logo */
+.jp-symbol {
+    animation: logoPulse 3s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(145, 70, 255, .3);
+    }
+    50% {
+        box-shadow: 0 0 28px rgba(145, 70, 255, .8);
+    }
+}
+
+/* Butonlar */
+.btn, button {
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.btn:hover, button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 22px rgba(145, 70, 255, .3);
+}
+
+/* Kaydırma çubuğu */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #08060d;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #7136b9;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a45cff;
+}
+
+/* Sayfa geçişleri */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
