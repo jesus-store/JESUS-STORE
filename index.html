@@ -10,65 +10,80 @@
 <body>
 
 <header>
-    <h1>JESUS STORE</h1>
-    <p>PREMIUM DIGITAL PRODUCTS</p>
+    <div class="logo">JESUS STORE</div>
+
+    <nav>
+        <a href="#home">Ana Sayfa</a>
+        <a href="#products">Ürünler</a>
+        <a href="#application">Admin Başvurusu</a>
+    </nav>
 </header>
 
-<main>
-    <section class="hero">
-        <h2>Kalitenin Yeni Adresi</h2>
-        <p>FiveM ve dijital ürünlerde premium deneyim.</p>
-        <a href="#products">ÜRÜNLERİ KEŞFET</a>
-    </section>
+<section class="hero" id="home">
+    <div class="hero-content">
+        <p class="hero-tag">PREMIUM DIGITAL PRODUCTS</p>
+        <h1>Kalitenin Yeni Adresi</h1>
+        <p>JESUS STORE dünyasına hoş geldin.</p>
+        <a href="#products" class="hero-button">ÜRÜNLERİ KEŞFET</a>
+    </div>
+</section>
 
-    <section id="products">
-        <h2>Ürünlerimiz</h2>
+<section class="products" id="products">
+    <h2 class="section-title">ÜRÜNLERİMİZ</h2>
+
+    <div class="products-grid">
 
         <div class="product">
-            <h3>Tweak</h3>
-            <p>Performans ve optimizasyon ürünü.</p>
-            <strong>400 TL</strong>
-            <button onclick="order('Tweak',400)">Satın Al</button>
+            <div class="product-number">01</div>
+            <h3>TWEAK</h3>
+            <p>Premium dijital ürün.</p>
+            <div class="price">400 TL</div>
+            <button onclick="order('Tweak', 400)">SATIN AL</button>
         </div>
 
         <div class="product">
-            <h3>Macro-Strafe</h3>
-            <p>Macro-Strafe dijital ürünü.</p>
-            <strong>300 TL</strong>
-            <button onclick="order('Macro-Strafe',300)">Satın Al</button>
+            <div class="product-number">02</div>
+            <h3>MACRO-STRAFE</h3>
+            <p>Premium dijital ürün.</p>
+            <div class="price">300 TL</div>
+            <button onclick="order('Macro-Strafe', 300)">SATIN AL</button>
         </div>
 
         <div class="product">
-            <h3>Config</h3>
-            <p>Özel oyun config ürünü.</p>
-            <strong>150 TL</strong>
-            <button onclick="order('Config',150)">Satın Al</button>
+            <div class="product-number">03</div>
+            <h3>CONFIG</h3>
+            <p>Premium dijital ürün.</p>
+            <div class="price">150 TL</div>
+            <button onclick="order('Config', 150)">SATIN AL</button>
         </div>
 
         <div class="product">
-            <h3>Social Pack</h3>
-            <p>Social Pack dijital ürünü.</p>
-            <strong>100 TL</strong>
-            <button onclick="order('Social Pack',100)">Satın Al</button>
+            <div class="product-number">04</div>
+            <h3>SOCIAL PACK</h3>
+            <p>Premium dijital ürün.</p>
+            <div class="price">100 TL</div>
+            <button onclick="order('Social Pack', 100)">SATIN AL</button>
         </div>
 
         <div class="product">
-            <h3>Regedit</h3>
-            <p>Regedit dijital ürünü.</p>
-            <strong>100 TL</strong>
-            <button onclick="order('Regedit',100)">Satın Al</button>
+            <div class="product-number">05</div>
+            <h3>REGEDIT</h3>
+            <p>Premium dijital ürün.</p>
+            <div class="price">100 TL</div>
+            <button onclick="order('Regedit', 100)">SATIN AL</button>
         </div>
-    </section>
 
-    <section id="application">
-        <h2>Ekibimize Katıl</h2>
-        <p>JESUS STORE ekibinde yer almak ister misin?</p>
-        <button onclick="openApplication()">Admin Başvurusu Yap</button>
-    </section>
-</main>
+    </div>
+</section>
+
+<section class="application" id="application">
+    <h2>EKİBİMİZE KATIL</h2>
+    <p>JESUS STORE ekibinde yer almak için başvurunu gönder.</p>
+    <button onclick="openApplication()">ADMİN BAŞVURUSU</button>
+</section>
 
 <footer>
-    <p>© 2026 JESUS STORE | ALL RIGHTS RESERVED</p>
+    © 2026 JESUS STORE — Tüm hakları saklıdır.
 </footer>
 
 <script src="script.js"></script>
