@@ -226,35 +226,5 @@ function openApplication() {
     form.hidden = !form.hidden;
 }
 
-async function adminLogin() {
-    const username = document.getElementById("adminUsername").value.trim();
-    const password = document.getElementById("adminPassword").value;
-    const message = document.getElementById("adminMessage");
-
-    message.textContent = "Giriş kontrol ediliyor...";
-
-    try {
-        const response = await fetch("https://jesus-store.onrender.com/admin/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password })
-        });
-
-        const data = await response.json();
-
-        if (!response.ok || !data.success) {
-            throw new Error(data.message || "Giriş başarısız.");
-        }
-
-        sessionStorage.setItem("jesusAdminToken", data.token);
-
-        message.textContent = "Giriş başarılı! Yönetim panelini sonraki adımda açacağız.";
-
-    } catch (error) {
-        message.textContent = error.message;
-    }
-}
-</script>
-
 </body>
 </html>
