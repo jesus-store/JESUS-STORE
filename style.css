@@ -306,3 +306,6 @@ footer {
         font-size: 12px;
     }
 }
+.support-card a {
+    transform: translateY(-10px);
+}
