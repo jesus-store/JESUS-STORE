@@ -173,8 +173,8 @@ async function initDatabase() {
         );
     `);
 
-    // KYZER hesabı
-    const kyzerPassword = process.env.OWNER_PASSWORD;
+    // KYZER HESABI
+    const kyzerPassword = process.env.KYZER_PASSWORD;
 
     if (kyzerPassword) {
         await pool.query(
@@ -186,7 +186,7 @@ async function initDatabase() {
         );
     }
 
-    // QUANTE hesabı
+    // QUANTE HESABI
     const quantePassword = process.env.QUANTE_PASSWORD;
 
     if (quantePassword) {
@@ -256,10 +256,7 @@ app.post("/order", async (req, res) => {
                                 { name: "Ürün", value: product },
                                 { name: "Fiyat", value: price + " TL" },
                                 { name: "Müşteri", value: customer },
-                                {
-                                    name: "Discord",
-                                    value: discord
-                                }
+                                { name: "Discord", value: discord }
                             ],
                             footer: { text: "JESUS STORE" }
                         }]
