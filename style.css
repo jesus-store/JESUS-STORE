@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@500;600;700;800;900&display=swap');
 
 :root {
@@ -97,7 +98,7 @@ header {
     align-items: center;
     justify-content: space-between;
     gap: 25px;
-    background: rgba(8,6,13,.88);
+    background: rgba(8,6,13,.92);
     backdrop-filter: blur(18px);
     border-bottom: 1px solid var(--border);
     position: sticky;
@@ -240,13 +241,11 @@ section h2 {
 
 /* BUTONLAR */
 
-.btn,
-button {
+.btn, button {
     border-radius: 9px;
 }
 
-.btn-primary,
-.primary-btn {
+.btn-primary, .primary-btn {
     display: inline-block;
     background: linear-gradient(110deg,#7135b5,#a855f7);
     color: white;
@@ -255,8 +254,7 @@ button {
     font-weight: 800;
 }
 
-.btn-primary:hover,
-.primary-btn:hover {
+.btn-primary:hover, .primary-btn:hover {
     box-shadow: 0 0 25px rgba(168,85,247,.4);
 }
 
@@ -264,7 +262,7 @@ button {
 
 .products {
     width: 100%;
-    max-width: 1250px;
+    max-width: 1400px;
     margin: 50px auto;
     padding: 55px 25px;
 }
@@ -278,8 +276,8 @@ button {
 
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(3,minmax(0,1fr));
-    gap: 25px;
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    gap: 20px;
     width: 100%;
     align-items: stretch;
 }
@@ -292,7 +290,7 @@ button {
     overflow: hidden;
     min-width: 0;
     min-height: 290px;
-    padding: 28px;
+    padding: 25px;
     background: linear-gradient(145deg,#191126,#0e0a15);
     border: 1px solid var(--border);
     border-radius: 17px;
@@ -437,7 +435,7 @@ button {
     font-size: 11px;
 }
 
-/* SİPARİŞ - TAKİP - BAŞVURU - YÖNETİCİ */
+/* SİPARİŞ - TAKİP - BAŞVURU */
 
 .application {
     display: block;
@@ -472,12 +470,12 @@ button {
     margin: 25px auto 0;
     padding: 28px;
     background: #130d20;
+    color: white;
     border: 1px solid rgba(150,80,255,.25);
     border-radius: 18px;
     box-shadow: 0 10px 35px rgba(0,0,0,.3);
 }
 
-/* ÖNEMLİ: Gizli başvuru formu gizli kalmalı */
 .store-form[hidden] {
     display: none !important;
 }
@@ -542,7 +540,7 @@ button {
     padding: 14px 25px;
 }
 
-/* MÜŞTERİ DESTEĞİ */
+/* DESTEK */
 
 .support-section {
     width: 100%;
@@ -624,11 +622,13 @@ footer p {
     max-width: 1250px;
     margin: 40px auto;
     padding: 20px;
+    color: white;
 }
 
 .admin-header,
 .admin-section {
     background: var(--panel);
+    color: white;
     border: 1px solid var(--border);
     border-radius: 15px;
     padding: 22px;
@@ -644,6 +644,7 @@ footer p {
 
 .admin-stat {
     background: var(--panel2);
+    color: white;
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 20px;
@@ -667,6 +668,7 @@ footer p {
     width: 100%;
     border-collapse: collapse;
     min-width: 700px;
+    background: #110d19;
 }
 
 .admin-table th {
@@ -721,6 +723,86 @@ footer p {
 
 .order-filters select {
     min-width: 180px;
+}
+
+/* YÖNETİM PANELİ FORM ELEMANLARI */
+
+.admin-container input,
+.admin-container textarea,
+.admin-container select,
+.admin-section input,
+.admin-section textarea,
+.admin-section select {
+    background: #090610 !important;
+    color: #ffffff !important;
+    border: 1px solid #39264d !important;
+    border-radius: 8px;
+    padding: 12px;
+    outline: none;
+}
+
+.admin-container input::placeholder,
+.admin-section input::placeholder,
+.admin-container textarea::placeholder,
+.admin-section textarea::placeholder {
+    color: #a99bb8 !important;
+}
+
+.admin-container input:focus,
+.admin-container textarea:focus,
+.admin-container select:focus,
+.admin-section input:focus,
+.admin-section textarea:focus,
+.admin-section select:focus {
+    border-color: var(--purple) !important;
+    box-shadow: 0 0 12px rgba(155,85,255,.2);
+}
+
+.admin-container button,
+.admin-section button {
+    color: white;
+    background: linear-gradient(110deg,#7135b5,#a855f7);
+    border: 1px solid #b879ff;
+    padding: 11px 16px;
+    border-radius: 8px;
+}
+
+/* TABLOLARDA VE PANELDE METİN RENGİ */
+
+.admin-container h1,
+.admin-container h2,
+.admin-container h3,
+.admin-section h1,
+.admin-section h2,
+.admin-section h3,
+.admin-header h1,
+.admin-header h2,
+.admin-header h3 {
+    color: white;
+}
+
+.admin-container p,
+.admin-section p {
+    color: #d6c9e2;
+}
+
+/* GENEL FORM BEYAZLIĞINI ENGELLE */
+
+input,
+textarea,
+select {
+    color: white;
+    accent-color: var(--purple);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #91869e;
+}
+
+select option {
+    background: #110d19;
+    color: white;
 }
 
 /* SCROLLBAR */
@@ -827,31 +909,5 @@ footer p {
         animation: none !important;
         transition: none !important;
         scroll-behavior: auto !important;
-    }
-}
-/* 4 ÜRÜN YAN YANA */
-.products-grid {
-    display: grid !important;
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-    gap: 20px !important;
-    width: 100% !important;
-    max-width: 1200px !important;
-    margin: 40px auto !important;
-}
-
-.product-card {
-    min-width: 0 !important;
-    width: 100% !important;
-}
-
-@media (max-width: 900px) {
-    .products-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    }
-}
-
-@media (max-width: 550px) {
-    .products-grid {
-        grid-template-columns: 1fr !important;
     }
 }
