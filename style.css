@@ -1153,3 +1153,58 @@ footer {
         font-size: 22px;
     }
 }
+
+/* SİPARİŞ ARAMA VE FİLTRELEME */
+
+.order-filters {
+    display: flex;
+    gap: 12px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.order-filters input {
+    flex: 1;
+    min-width: 220px;
+    padding: 13px 16px;
+    background: #100d18;
+    border: 1px solid #30243f;
+    border-radius: 9px;
+    color: white;
+    outline: none;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.order-filters select {
+    min-width: 180px;
+    padding: 13px 16px;
+    background: #100d18;
+    border: 1px solid #30243f;
+    border-radius: 9px;
+    color: white;
+    outline: none;
+    cursor: pointer;
+}
+
+.order-filters input:focus,
+.order-filters select:focus {
+    border-color: #a855f7;
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.12);
+}
+
+.order-filters input::placeholder {
+    color: #82788e;
+}
+
+@media (max-width: 600px) {
+    .order-filters {
+        flex-direction: column;
+    }
+
+    .order-filters input,
+    .order-filters select {
+        width: 100%;
+        min-width: 0;
+    }
+}
