@@ -747,3 +747,138 @@ html {
         gap: 20px !important;
     }
 }
+/* JESUS STORE - FORM AND SUPPORT DESIGN FIX */
+
+.application {
+    display: block;
+    width: 100%;
+    padding: 65px 20px;
+    margin: 35px auto;
+    text-align: center;
+    color: #fff !important;
+    background: linear-gradient(135deg, #10091c, #090610) !important;
+    border-top: 1px solid rgba(150, 80, 255, 0.15);
+    border-bottom: 1px solid rgba(150, 80, 255, 0.15);
+}
+
+.application h2,
+.application p {
+    color: #fff !important;
+}
+
+.application h2 {
+    margin-bottom: 15px;
+}
+
+.application > p {
+    color: #aaa !important;
+    margin-bottom: 25px;
+}
+
+.store-form {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+    width: 100% !important;
+    max-width: 480px !important;
+    margin: 25px auto 0 !important;
+    padding: 28px !important;
+    background: #130d20 !important;
+    border: 1px solid rgba(150, 80, 255, 0.25) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box !important;
+}
+
+.store-form input,
+.store-form textarea {
+    width: 100% !important;
+    padding: 15px !important;
+    color: #fff !important;
+    background: #090610 !important;
+    border: 1px solid #35234c !important;
+    border-radius: 9px !important;
+    outline: none !important;
+    font-size: 14px;
+}
+
+.store-form input:focus,
+.store-form textarea:focus {
+    border-color: #9b55ff !important;
+    box-shadow: 0 0 12px rgba(155, 85, 255, 0.2);
+}
+
+.store-form input::placeholder,
+.store-form textarea::placeholder {
+    color: #91869e !important;
+}
+
+.store-form p {
+    color: #ddd !important;
+}
+
+.store-form button,
+.application > button {
+    padding: 14px 20px !important;
+    color: #fff !important;
+    background: linear-gradient(135deg, #7627d9, #a044ff) !important;
+    border: none !important;
+    border-radius: 9px !important;
+    cursor: pointer;
+    font-weight: 800;
+    transition: 0.25s ease;
+}
+
+.store-form button:hover,
+.application > button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(145, 65, 255, 0.3);
+}
+
+.support-section {
+    padding: 65px 20px !important;
+    background: #090610 !important;
+    text-align: center;
+}
+
+.support-card {
+    max-width: 650px;
+    margin: auto;
+    padding: 40px 25px;
+    color: #fff !important;
+    background: linear-gradient(135deg, #190d2b, #0e0917) !important;
+    border: 1px solid rgba(150, 80, 255, 0.3) !important;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(110, 40, 200, 0.12);
+}
+
+.support-card h3,
+.support-card p {
+    color: #fff !important;
+}
+
+.support-card p {
+    margin: 15px 0 25px;
+    color: #b9aec8 !important;
+}
+
+.support-card a {
+    display: inline-block;
+    padding: 13px 30px;
+    color: #fff !important;
+    background: linear-gradient(135deg, #7627d9, #a044ff);
+    border-radius: 9px;
+    text-decoration: none;
+    font-weight: 800;
+}
+
+footer {
+    padding: 35px 20px !important;
+    color: #aaa !important;
+    background: #07050b !important;
+    text-align: center;
+}
+
+footer p {
+    color: #aaa !important;
+}
