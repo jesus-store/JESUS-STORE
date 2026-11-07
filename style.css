@@ -1,1 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap');
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #08070d;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+}
+
+header {
+    padding: 30px 8%;
+    background: #0d0b15;
+    border-bottom: 1px solid #29203d;
+    text-align: center;
+}
+
+header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 38px;
+    color: #a855f7;
+    text-shadow: 0 0 20px #9333ea;
+}
+
+header p {
+    color: #aaa;
+    letter-spacing: 4px;
+    font-size: 11px;
+    margin-top: 10px;
+}
+
+.hero {
+    text-align: center;
+    padding: 130px 20px;
+    background: radial-gradient(ellipse at center, #291044 0%, #100b19 45%, #08070d 80%);
+}
+
+.hero h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    color: #aaa;
+    margin-bottom: 35px;
+}
+
+.hero a, button {
+    display: inline-block;
+    background: linear-gradient(90deg, #7e22ce, #a855f7);
+    color: white;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 700;
+    transition: .3s;
+}
+
+.hero a:hover, button:hover {
+    box-shadow: 0 0 25px #9333ea;
+    transform: translateY(-3px);
+}
+
+#products {
+    padding: 80px 8%;
+    text-align: center;
+}
+
+#products h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #c084fc;
+    margin-bottom: 40px;
+}
+
+.product {
+    background: #110d1b;
+    border: 1px solid #43236b;
+    border-radius: 15px;
+    padding: 35px;
+    max-width: 350px;
+    margin: auto;
+    box-shadow: 0 0 25px #6b21a822;
+}
+
+.product h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.product p {
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+.product strong {
+    display: block;
+    color: #c084fc;
+    font-size: 25px;
+    margin-bottom: 25px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    border-top: 1px solid #29203d;
+    color: #777;
+}
